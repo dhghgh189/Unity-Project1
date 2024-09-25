@@ -7,6 +7,8 @@ using UnityEngine.Scripting.APIUpdating;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] LayerMask whatIsGround;
+    [SerializeField] Transform leftFeet;
+    [SerializeField] Transform rightFeet;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float maxFallSpeed;
@@ -16,14 +18,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
 
     bool _isGrounded = true;
-    float x;
-
-    // test
-    [SerializeField] float maxJumpTime;
-    float _elapsedTime;
-    bool _needToJump = false;
-
     bool _tryToJump = false;
+    float x;
 
     void Awake()
     {
@@ -33,8 +29,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-
-        //Jump2();
 
         // max fall speed clamp
         if (_rb.velocity.y < -maxFallSpeed)
@@ -76,14 +70,18 @@ public class PlayerController : MonoBehaviour
             {
                 _tryToJump = false;
                 _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
-            }
+            }           
         }
     }
 
     void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, whatIsGround);
-        if (hit.collider != null)
+        RaycastHit2D leftHit = Physics2D.Raycast(leftFeet.position, Vector2.down, 0.1f, whatIsGround);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightFeet.position, Vector2.down, 0.1f, whatIsGround);
+
+        // execute 2 raycast from real feet position
+        // (for fix corner problem)
+        if (leftHit.collider != null || rightHit.collider != null)
         {
             _isGrounded = true;
         }
@@ -108,5 +106,11 @@ public class PlayerController : MonoBehaviour
     {
         _rb.velocity = Vector2.zero;
         _rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+    }
+
+    public void SpringJump(float springPower)
+    {
+        _tryToJump = false;
+        _rb.AddForce(Vector2.up * springPower, ForceMode2D.Impulse);
     }
 }
