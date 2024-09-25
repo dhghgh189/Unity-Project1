@@ -10,6 +10,10 @@ public class Spring : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            // check surface normal
+            if (other.contacts[0].normal.y > -1f)
+                return;
+
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
             rb?.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }

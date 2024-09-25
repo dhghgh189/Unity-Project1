@@ -15,8 +15,15 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D _rb;
 
-    bool _isGrounded;
+    bool _isGrounded = true;
     float x;
+
+    // test
+    [SerializeField] float maxJumpTime;
+    float _elapsedTime;
+    bool _needToJump = false;
+
+    bool _tryToJump = false;
 
     void Awake()
     {
@@ -26,6 +33,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+
+        //Jump2();
 
         // max fall speed clamp
         if (_rb.velocity.y < -maxFallSpeed)
@@ -37,7 +46,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // check ground
-        GroundCheck();
+        if (_rb.velocity.y != 0)
+            GroundCheck();
 
         // check input
         x = Input.GetAxisRaw("Horizontal");
@@ -53,13 +63,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(jumpKey))
         {
             if (_isGrounded == true)
+            {
+                _tryToJump = true;
                 Jump();
+            }
         }
 
+        // check exception (tryToJump)
         if (Input.GetKeyUp(jumpKey))
         {
-            if (_rb.velocity.y > 0)
+            if (_tryToJump == true && _rb.velocity.y > 0)    
+            {
+                _tryToJump = false;
                 _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
+            }
         }
     }
 
@@ -91,5 +108,5 @@ public class PlayerController : MonoBehaviour
     {
         _rb.velocity = Vector2.zero;
         _rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-    }  
+    }
 }

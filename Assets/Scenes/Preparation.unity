@@ -228,6 +228,7 @@ MonoBehaviour:
   maxFallSpeed: 12
   jumpPower: 12
   jumpKey: 122
+  maxJumpTime: 0.1
 --- !u!50 &231819984
 Rigidbody2D:
   serializedVersion: 4
@@ -4547,7 +4548,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: -2, z: 0}
-  m_Size: {x: 31, y: 2, z: 1}
+  m_Size: {x: 31, y: 3, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
