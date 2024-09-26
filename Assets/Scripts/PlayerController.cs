@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode jumpKey;
 
     Rigidbody2D _rb;
+    Animator _anim;
 
+    int _currentAnim;
     bool _isGrounded = true;
     bool _tryToJump = false;
     float x;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -38,8 +41,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // check ground
-        if (_rb.velocity.y != 0)
-            GroundCheck();
+        GroundCheck();
 
         // check input
         x = Input.GetAxisRaw("Horizontal");
@@ -61,15 +63,18 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // check exception (tryToJump)
+        // check exception(tryToJump)
         if (Input.GetKeyUp(jumpKey))
         {
-            if (_tryToJump == true && _rb.velocity.y > 0)    
+            if (_tryToJump == true && _rb.velocity.y > 0)
             {
                 _tryToJump = false;
                 _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
-            }           
+            }
         }
+
+        // Animation
+        UpdateAnim();
     }
 
     void GroundCheck()
@@ -87,6 +92,35 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = false;
         }
+    }
+
+    void UpdateAnim()
+    {
+        int checkAnim = 0;
+
+        if (_rb.velocity.y > 0.01f)
+        {
+            checkAnim = DefineAnim.HASH_JUMP;
+        }
+        else if (_rb.velocity.y < -0.01f)
+        {
+            checkAnim = DefineAnim.HASH_FALL;
+        }
+        else if (Mathf.Abs(_rb.velocity.x) > 0.01f)
+        {
+            checkAnim = DefineAnim.HASH_RUN;
+        }
+        else
+        {
+            checkAnim = DefineAnim.HASH_IDLE;
+        }
+
+        // if state changed
+        if (checkAnim != _currentAnim)
+        {
+            _currentAnim = checkAnim;
+            _anim.Play(_currentAnim);
+        }       
     }
 
     void Move()
