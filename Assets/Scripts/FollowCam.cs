@@ -24,8 +24,16 @@ public class FollowCam : MonoBehaviour
         _halfHeight = _cam.orthographicSize;
     }
 
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
     private void LateUpdate()
     {
+        if (target == null)
+            return;
+
         Vector3 pos = target.position + delta;
 
         // clamp camera

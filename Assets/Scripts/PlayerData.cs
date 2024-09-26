@@ -10,7 +10,7 @@ public class PlayerData : MonoBehaviour
     string _name;
     string _description;
 
-    public int ID {  get { return _id; } }
+    public int ID { get { return _id; } }
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
     #endregion
@@ -92,4 +92,21 @@ public class PlayerData : MonoBehaviour
         }
     }
     #endregion
+
+    public void SetData(PlayerSO data)
+    {
+        // info
+        _id = data.ID;
+        _name = data.Name;
+        _description = data.Description;
+
+        // stat
+        Attack = data.Attack;
+        MaxHP = data.MaxHP;
+        _maxMP = data.MaxMP;
+        HP = MaxHP;
+        MP = _maxMP;
+        CooldownAmount = data.CooldownAmount;
+        MPRegenAmount = data.MPRegenAmount;
+    }
 }

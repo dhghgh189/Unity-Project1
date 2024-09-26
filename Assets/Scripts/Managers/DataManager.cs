@@ -10,6 +10,11 @@ public class DataManager : Singleton<DataManager>
 
     Dictionary<int, PlayerSO> playerDict = new Dictionary<int, PlayerSO>();
 
+    public Dictionary<int, PlayerSO> PlayerDict
+    {
+        get { return playerDict; }
+    }
+
     protected override void Init()
     {
         LoadData();

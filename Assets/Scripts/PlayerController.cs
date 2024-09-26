@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D _rb;
     Animator _anim;
+    CapsuleCollider2D _collider;
+    PlayerData _data;
 
     int _currentAnim;
     bool _isGrounded = true;
@@ -25,6 +27,25 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _collider = GetComponent<CapsuleCollider2D>();
+        _data = GetComponent<PlayerData>();
+    }
+
+    public void SetData(int dataID)
+    {
+        if (DataManager.Instance.PlayerDict.TryGetValue(dataID, out PlayerSO data) == false)
+        {
+            Debug.LogError("Player Set Data Failed...");
+            Debug.LogError("Please Check data");
+            return;
+        }
+
+        // shape
+        _anim.runtimeAnimatorController = data.AnimController;
+        _collider.offset = data.ColliderOffset;
+        _collider.size = data.ColliderSize;
+
+        _data.SetData(data);
     }
 
     void FixedUpdate()
