@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291523c223534ec499cf7ac63aa2dba3, type: 3}
   m_Name: Mario
   m_EditorClassIdentifier: 
-  animController: {fileID: 0}
-  colliderOffset: {x: 0, y: 0}
-  colliderSize: {x: 0, y: 0}
-  Attack: 0
-  MaxHP: 0
-  MaxMP: 0
+  ID: 0
+  Name: Mario
+  Description: Super Mario !
+  AnimController: {fileID: 9100000, guid: 64789e0daca3c9f49a6ee09a54e18488, type: 2}
+  ColliderOffset: {x: 0.003685713, y: 0.5}
+  ColliderSize: {x: 0.6255317, y: 1}
+  Attack: 7
+  MaxHP: 4
+  MaxMP: 150
   CooldownAmount: 0
-  MPRegenAmount: 0
+  MPRegenAmount: 1
