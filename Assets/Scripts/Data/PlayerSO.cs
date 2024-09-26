@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new PlayerSO", menuName = "Scriptable Objects/PlayerSO")]
@@ -12,7 +11,7 @@ public class PlayerSO : ScriptableObject
     public string Description;
 
     [Header("Shape")]
-    public AnimatorController AnimController;
+    public RuntimeAnimatorController AnimController;
     public Vector2 ColliderOffset;
     public Vector2 ColliderSize;
     public Sprite Icon;

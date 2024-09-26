@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,12 +16,12 @@ public class PlayerData
     #endregion
 
     #region Shape
-    AnimatorController _animController;
+    RuntimeAnimatorController _animController;
     Vector2 _colliderOffset;
     Vector2 _colliderSize;
     bool _needToFlip;
 
-    public AnimatorController AnimController { get { return _animController; } }
+    public RuntimeAnimatorController AnimController { get { return _animController; } }
     public Vector2 ColliderOffset { get { return _colliderOffset; } }
     public Vector2 ColliderSize { get { return _colliderSize; } }
     public bool NeedToFlip { get { return _needToFlip; } }
