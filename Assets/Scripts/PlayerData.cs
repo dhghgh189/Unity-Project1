@@ -20,10 +20,12 @@ public class PlayerData
     AnimatorController _animController;
     Vector2 _colliderOffset;
     Vector2 _colliderSize;
+    bool _needToFlip;
 
     public AnimatorController AnimController { get { return _animController; } }
     public Vector2 ColliderOffset { get { return _colliderOffset; } }
     public Vector2 ColliderSize { get { return _colliderSize; } }
+    public bool NeedToFlip { get { return _needToFlip; } }
     #endregion
 
     #region Stats
@@ -115,6 +117,7 @@ public class PlayerData
         _animController = data.AnimController;
         _colliderOffset = data.ColliderOffset;
         _colliderSize = data.ColliderSize;
+        _needToFlip = data.needToFilp;
 
         // stat
         Attack = data.Attack;

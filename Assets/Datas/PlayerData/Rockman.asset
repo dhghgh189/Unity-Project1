@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 291523c223534ec499cf7ac63aa2dba3, type: 3}
-  m_Name: Mario
+  m_Name: Rockman
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: "\uB9C8\uB9AC\uC624"
-  Description: "\uCE58\uC720 \uB2A5\uB825\uC744 \uAC00\uC9C4 \uD0F1\uCEE4\uC785\uB2C8\uB2E4."
-  AnimController: {fileID: 9100000, guid: 64789e0daca3c9f49a6ee09a54e18488, type: 2}
+  ID: 1
+  Name: "\uB85D\uB9E8"
+  Description: "\uC9C1\uAD00\uC801\uC774\uACE0 \uC26C\uC6B4 \uBB3C\uB9AC \uB51C\uB7EC\uC785\uB2C8\uB2E4."
+  AnimController: {fileID: 9100000, guid: a3185f03100df0a49b0c2c4f494f4190, type: 2}
   ColliderOffset: {x: 0.003685713, y: 0.5}
   ColliderSize: {x: 0.6255317, y: 1}
-  Icon: {fileID: -2028652810, guid: eeff897c24b02e94aac32b9dbe6839fb, type: 3}
-  Attack: 7
+  Icon: {fileID: 212256679, guid: 10692b303d6412e4b8158bb0e1b8bfa9, type: 3}
+  needToFilp: 1
+  Attack: 8
   MaxHP: 4
   MaxMP: 150
   CooldownAmount: 0

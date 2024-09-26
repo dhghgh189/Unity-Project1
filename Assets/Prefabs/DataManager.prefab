@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listPlayerSO:
   - {fileID: 11400000, guid: 38b3495ab0112274cb51f6857fc7e639, type: 2}
+  - {fileID: 11400000, guid: b99e7339311bbc24880c6ac7adda449c, type: 2}

@@ -15,6 +15,8 @@ public class PlayerSO : ScriptableObject
     public AnimatorController AnimController;
     public Vector2 ColliderOffset;
     public Vector2 ColliderSize;
+    public Sprite Icon;
+    public bool needToFilp = false;
 
     [Header("Stats")]
     public float Attack;

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PreparationScene : MonoBehaviour
 {
+    [SerializeField] Vector3 playerStartPos;
+
     void Start()
-    {
-        Vector3 startPos = new Vector3(-8, -2, 0);
+    {      
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.transform.position = startPos;
+            player.transform.position = playerStartPos;
 
             FollowCam cam = Camera.main.GetComponent<FollowCam>();
             if (cam != null)

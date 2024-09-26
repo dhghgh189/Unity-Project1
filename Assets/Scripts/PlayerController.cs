@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     Animator _anim;
     CapsuleCollider2D _collider;
     PlayerData _data;
+    SpriteRenderer _sr;
 
     int _currentAnim;
     bool _isGrounded = true;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider2D>();
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
         _anim.runtimeAnimatorController = gameData.PlayerData.AnimController;
         _collider.offset = gameData.PlayerData.ColliderOffset;
         _collider.size = gameData.PlayerData.ColliderSize;
+        _sr.flipX = gameData.PlayerData.NeedToFlip;
 
         _data = gameData.PlayerData;
     }
@@ -118,21 +121,27 @@ public class PlayerController : MonoBehaviour
     {
         int checkAnim = 0;
 
-        if (_rb.velocity.y > 0.01f)
+        if (_isGrounded == false)
         {
-            checkAnim = DefineAnim.HASH_JUMP;
-        }
-        else if (_rb.velocity.y < -0.01f)
-        {
-            checkAnim = DefineAnim.HASH_FALL;
-        }
-        else if (Mathf.Abs(_rb.velocity.x) > 0.01f)
-        {
-            checkAnim = DefineAnim.HASH_RUN;
+            if (_rb.velocity.y >= Mathf.Epsilon)
+            {
+                checkAnim = DefineAnim.HASH_JUMP;
+            }
+            else if (_rb.velocity.y < Mathf.Epsilon)
+            {
+                checkAnim = DefineAnim.HASH_FALL;
+            }
         }
         else
         {
-            checkAnim = DefineAnim.HASH_IDLE;
+            if (Mathf.Abs(_rb.velocity.x) > 0.01f)
+            {
+                checkAnim = DefineAnim.HASH_RUN;
+            }
+            else
+            {
+                checkAnim = DefineAnim.HASH_IDLE;
+            }
         }
 
         // if state changed
