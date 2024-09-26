@@ -28,24 +28,23 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider2D>();
-        _data = GetComponent<PlayerData>();
     }
 
-    public void SetData(int dataID)
+    void Start()
     {
-        if (DataManager.Instance.PlayerDict.TryGetValue(dataID, out PlayerSO data) == false)
-        {
-            Debug.LogError("Player Set Data Failed...");
-            Debug.LogError("Please Check data");
-            return;
-        }
+        SetData();
+    }
+
+    void SetData()
+    {
+        GameData gameData = GameManager.Instance.Data;
 
         // shape
-        _anim.runtimeAnimatorController = data.AnimController;
-        _collider.offset = data.ColliderOffset;
-        _collider.size = data.ColliderSize;
+        _anim.runtimeAnimatorController = gameData.PlayerData.AnimController;
+        _collider.offset = gameData.PlayerData.ColliderOffset;
+        _collider.size = gameData.PlayerData.ColliderSize;
 
-        _data.SetData(data);
+        _data = gameData.PlayerData;
     }
 
     void FixedUpdate()

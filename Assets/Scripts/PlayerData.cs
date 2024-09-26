@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData
 {
     #region Info
     int _id;
@@ -13,6 +14,16 @@ public class PlayerData : MonoBehaviour
     public int ID { get { return _id; } }
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
+    #endregion
+
+    #region Shape
+    AnimatorController _animController;
+    Vector2 _colliderOffset;
+    Vector2 _colliderSize;
+
+    public AnimatorController AnimController { get { return _animController; } }
+    public Vector2 ColliderOffset { get { return _colliderOffset; } }
+    public Vector2 ColliderSize { get { return _colliderSize; } }
     #endregion
 
     #region Stats
@@ -99,6 +110,11 @@ public class PlayerData : MonoBehaviour
         _id = data.ID;
         _name = data.Name;
         _description = data.Description;
+
+        // shape
+        _animController = data.AnimController;
+        _colliderOffset = data.ColliderOffset;
+        _colliderSize = data.ColliderSize;
 
         // stat
         Attack = data.Attack;
