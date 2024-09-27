@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static GameManager;
 
 public class PlayerData
 {
@@ -105,8 +106,16 @@ public class PlayerData
     }
     #endregion
 
-    public void SetData(PlayerSO data)
+    // execute only once
+    public bool SetInitData(int dataID)
     {
+        if (DataManager.Instance.PlayerDict.TryGetValue(dataID, out PlayerSO data) == false)
+        {
+            Debug.LogError("Player Set Data Failed...");
+            Debug.LogError("Please Check data");
+            return false;
+        }
+
         // info
         _id = data.ID;
         _name = data.Name;
@@ -118,6 +127,19 @@ public class PlayerData
         _colliderSize = data.ColliderSize;
         _needToFlip = data.needToFilp;
 
+        return true;
+    }
+
+    // execute when player instantiated
+    public bool SetStat()
+    {
+        if (DataManager.Instance.PlayerDict.TryGetValue(_id, out PlayerSO data) == false)
+        {
+            Debug.LogError("Player Set Stat Failed...");
+            Debug.LogError("Please Check data");
+            return false;
+        }
+
         // stat
         Attack = data.Attack;
         MaxHP = data.MaxHP;
@@ -126,5 +148,7 @@ public class PlayerData
         MP = _maxMP;
         CooldownAmount = data.CooldownAmount;
         MPRegenAmount = data.MPRegenAmount;
+
+        return true;
     }
 }

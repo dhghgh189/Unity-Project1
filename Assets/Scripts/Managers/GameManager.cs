@@ -59,19 +59,16 @@ public class GameManager : Singleton<GameManager>
         if (_data.PlayerData != null)
             return;
 
-        if (DataManager.Instance.PlayerDict.TryGetValue(_data.SelectedPlayerID, out PlayerSO data) == false)
-        {
-            Debug.LogError("Player Set Data Failed...");
-            Debug.LogError("Please Check data");
-            _curState = EState.None;
-            return;
-        }
-
         _data.Coins = 0;
         _data.CurrentStageIndex = 0;
 
         PlayerData playerData = new PlayerData();
-        playerData.SetData(data);
+        if (playerData.SetInitData(_data.SelectedPlayerID) == false)
+        {
+            _curState = EState.None;
+            return;
+        }
+
         _data.PlayerData = playerData;
 
         SceneManager.LoadScene("Preparation");

@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
         _collider.size = gameData.PlayerData.ColliderSize;
         _sr.flipX = gameData.PlayerData.NeedToFlip;
 
+        // SetStat
+        gameData.PlayerData.SetStat();
+
         _data = gameData.PlayerData;
     }
 
