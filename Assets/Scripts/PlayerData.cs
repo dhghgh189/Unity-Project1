@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static GameManager;
 
 public class PlayerData
 {
@@ -43,7 +43,7 @@ public class PlayerData
     float _mp;
 
     public UnityAction<Enums.EEvents, float> OnUpgradeStat;
-    public UnityAction<float, float> OnChangedStat;
+    public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 
     public float Attack
     {
@@ -51,7 +51,7 @@ public class PlayerData
         set 
         {
             _attack = value;
-            OnUpgradeStat?.Invoke(Enums.EEvents.ChangedAttackPoint, _attack);
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeAttackPoint, _attack);
         }
     }
 
@@ -61,7 +61,7 @@ public class PlayerData
         set
         {
             _maxHP = value;
-            OnUpgradeStat?.Invoke(Enums.EEvents.ChangedMaxHP, _maxHP);
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMaxHP, _maxHP);
         }
     }
 
@@ -71,7 +71,7 @@ public class PlayerData
         set
         {
             _cooldownAmount = value;
-            OnUpgradeStat?.Invoke(Enums.EEvents.ChangedCooldownAmount, _cooldownAmount);
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeCooldownAmount, _cooldownAmount);
         }
     }
 
@@ -81,7 +81,7 @@ public class PlayerData
         set
         {
             _mpRegenAmount = value;
-            OnUpgradeStat?.Invoke(Enums.EEvents.ChangedMPRegenAmount, _mpRegenAmount);
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMPRegenAmount, _mpRegenAmount);
         }
     }
 
@@ -91,7 +91,7 @@ public class PlayerData
         set 
         {
             _hp = value;
-            OnChangedStat?.Invoke(_hp, _maxHP);
+            OnChangedStat?.Invoke(Enums.EEvents.ChangedHP, _hp, _maxHP);
         }
     }
 
@@ -101,9 +101,11 @@ public class PlayerData
         set
         {
             _mp = value;
-            OnChangedStat?.Invoke(_mp, _maxMP);
+            OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP);
         }
     }
+
+    public float MaxMP { get { return _maxMP; } }
     #endregion
 
     // execute only once

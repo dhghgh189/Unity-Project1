@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class UI_Player : MonoBehaviour
 {
     [SerializeField] Image imgPlayerIcon;
-    [SerializeField] RectTransform playerHealthGroup;
-    [SerializeField] UI_PlayerHealth healthPrefab;
-
-    List<UI_PlayerHealth> listPlayerHealth = new List<UI_PlayerHealth>();
+    [SerializeField] UI_SliderBar healthBar;
+    [SerializeField] UI_SliderBar manaBar;
 
     void Start()
     {
@@ -25,6 +23,38 @@ public class UI_Player : MonoBehaviour
         if (player.Data.NeedToFlip)
         {
             imgPlayerIcon.rectTransform.localScale = new Vector3(-1, imgPlayerIcon.rectTransform.localScale.y, imgPlayerIcon.rectTransform.localScale.z);
+        }
+
+        player.Data.OnChangedStat += UpdateChangedStat;
+
+        // init once
+        healthBar.UpdateSliderBar(player.Data.HP, player.Data.MaxHP, true);
+        manaBar.UpdateSliderBar(player.Data.MP, player.Data.MaxMP, false);
+    }
+
+    public void UpdateChangedStat(Enums.EEvents eEvent, float current, float max)
+    {
+        switch (eEvent)
+        {
+            case Enums.EEvents.ChangedHP:
+                {
+                    healthBar.UpdateSliderBar(current, max, true);
+                }
+                break;
+            case Enums.EEvents.ChangedMP:
+                {
+                    manaBar.UpdateSliderBar(current, max, false);
+                }
+                break;
+        }
+    }
+
+    private void OnDisable()
+    {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.Data.OnChangedStat -= UpdateChangedStat;
         }
     }
 }

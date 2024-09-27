@@ -7,9 +7,14 @@ public static class Enums
     // game events
     public enum EEvents
     {
-        ChangedAttackPoint,
-        ChangedMaxHP,
-        ChangedCooldownAmount,
-        ChangedMPRegenAmount,
+        // Upgrade
+        UpgradeAttackPoint,
+        UpgradeMaxHP,
+        UpgradeCooldownAmount,
+        UpgradeMPRegenAmount,
+
+        // Change
+        ChangedHP,
+        ChangedMP,
     }
 }
