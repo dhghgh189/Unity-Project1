@@ -11,7 +11,7 @@ public class Spring : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             // check surface normal
-            if (other.contacts[0].normal.y > -1f)
+            if (other.contacts[0].normal.y > -0.7f)
                 return;
 
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
