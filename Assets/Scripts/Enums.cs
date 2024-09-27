@@ -10,11 +10,17 @@ public static class Enums
         // Upgrade
         UpgradeAttackPoint,
         UpgradeMaxHP,
-        UpgradeCooldownAmount,
-        UpgradeMPRegenAmount,
+        UpgradeUtil,
 
         // Change
         ChangedHP,
         ChangedMP,
+    }
+
+    public enum EUpgradeType
+    {
+        AttackPoint,
+        HP,
+        Util
     }
 }

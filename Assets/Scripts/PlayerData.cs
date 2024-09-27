@@ -34,10 +34,12 @@ public class PlayerData
     //////////////////////
     float _attack;
     float _maxHP;
-    float _cooldownAmount;
-    float _mpRegenAmount;
+    float _utilAmount;
     //////////////////////
-    
+    int _attackLevel;
+    int _hpLevel;
+    int _utilLevel;
+    /// //////////////////
     float _hp;
     float _maxMP;
     float _mp;
@@ -51,6 +53,7 @@ public class PlayerData
         set 
         {
             _attack = value;
+            _attackLevel++;
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeAttackPoint, _attack);
         }
     }
@@ -61,27 +64,19 @@ public class PlayerData
         set
         {
             _maxHP = value;
+            _hpLevel++;
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMaxHP, _maxHP);
         }
     }
 
-    public float CooldownAmount
+    public float UtilAmount
     {
-        get { return _cooldownAmount; }
+        get { return _utilAmount; }
         set
         {
-            _cooldownAmount = value;
-            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeCooldownAmount, _cooldownAmount);
-        }
-    }
-
-    public float MPRegenAmount
-    {
-        get { return _mpRegenAmount; }
-        set
-        {
-            _mpRegenAmount = value;
-            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMPRegenAmount, _mpRegenAmount);
+            _utilAmount = value;
+            _utilLevel++;
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeUtil, _utilAmount);
         }
     }
 
@@ -148,8 +143,7 @@ public class PlayerData
         _maxMP = data.MaxMP;
         HP = MaxHP;
         MP = _maxMP;
-        CooldownAmount = data.CooldownAmount;
-        MPRegenAmount = data.MPRegenAmount;
+        UtilAmount = data.UtilAmount;
 
         return true;
     }

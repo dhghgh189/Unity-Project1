@@ -177,4 +177,21 @@ public class PlayerController : MonoBehaviour
         _tryToJump = false;
         _rb.AddForce(Vector2.up * springPower, ForceMode2D.Impulse);
     }
+
+    // Upgrade Player Stat
+    public void UpgradeStat(Enums.EUpgradeType type)
+    {
+        switch (type)
+        {
+            case Enums.EUpgradeType.AttackPoint:
+                _data.Attack += Define.UPGRADE_ATTACK_AMOUNT;
+                break;
+            case Enums.EUpgradeType.HP:
+                _data.MaxHP += Define.UPGRADE_HP_AMOUNT;
+                break;
+            case Enums.EUpgradeType.Util:
+                _data.UtilAmount += Define.UPGRADE_UTIL_AMOUNT;
+                break;
+        }
+    }
 }

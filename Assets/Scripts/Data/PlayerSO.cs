@@ -21,6 +21,5 @@ public class PlayerSO : ScriptableObject
     public float Attack;
     public float MaxHP;
     public float MaxMP;
-    public float CooldownAmount;
-    public float MPRegenAmount;
+    public float UtilAmount;
 }
