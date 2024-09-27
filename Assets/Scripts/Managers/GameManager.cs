@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         _data.Coins = 0;
-        _data.CurrentStageIndex = 1;
+        _data.CurrentStageIndex = 0;
 
         PlayerData playerData = new PlayerData();
         playerData.SetData(data);

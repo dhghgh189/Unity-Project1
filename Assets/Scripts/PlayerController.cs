@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,16 +25,15 @@ public class PlayerController : MonoBehaviour
     bool _tryToJump = false;
     float x;
 
+    public PlayerData Data { get { return _data; } }
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider2D>();
         _sr = GetComponent<SpriteRenderer>();
-    }
 
-    void Start()
-    {
         SetData();
     }
 

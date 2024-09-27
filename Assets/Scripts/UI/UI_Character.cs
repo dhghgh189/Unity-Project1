@@ -22,6 +22,10 @@ public class UI_Character : MonoBehaviour, ISelectHandler, IPointerClickHandler
         _parent = parent;
         _characterID = characterID;
         imgIcon.sprite = DataManager.Instance.PlayerDict[characterID].Icon;
+        if (DataManager.Instance.PlayerDict[characterID].needToFilp)
+        {
+            imgIcon.rectTransform.localScale = new Vector3(-1, imgIcon.rectTransform.localScale.y, imgIcon.rectTransform.localScale.z);
+        }
     }
 
     public void OnSelect(BaseEventData eventData)
