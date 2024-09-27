@@ -47,9 +47,6 @@ public class PlayerController : MonoBehaviour
         _collider.size = gameData.PlayerData.ColliderSize;
         _sr.flipX = gameData.PlayerData.NeedToFlip;
 
-        // SetStat
-        gameData.PlayerData.SetStat();
-
         _data = gameData.PlayerData;
     }
 
@@ -181,16 +178,23 @@ public class PlayerController : MonoBehaviour
     // Upgrade Player Stat
     public void UpgradeStat(Enums.EUpgradeType type)
     {
+        // 업그레이드 레벨이 max인 경우 return 
+        if (_data.GetLevel(type) >= Define.upgradeInfos[(int)type].maxLevel)
+        {
+            Debug.Log("Upgrade level is already max!");
+            return;
+        }
+
         switch (type)
         {
             case Enums.EUpgradeType.AttackPoint:
-                _data.Attack += Define.UPGRADE_ATTACK_AMOUNT;
+                _data.AttackLevel++;
                 break;
             case Enums.EUpgradeType.HP:
-                _data.MaxHP += Define.UPGRADE_HP_AMOUNT;
+                _data.HPLevel++;
                 break;
             case Enums.EUpgradeType.Util:
-                _data.UtilAmount += Define.UPGRADE_UTIL_AMOUNT;
+                _data.UtilLevel++;
                 break;
         }
     }

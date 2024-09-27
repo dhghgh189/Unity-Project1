@@ -48,13 +48,4 @@ public class UI_Player : MonoBehaviour
                 break;
         }
     }
-
-    private void OnDisable()
-    {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        if (player != null)
-        {
-            player.Data.OnChangedStat -= UpdateChangedStat;
-        }
-    }
 }

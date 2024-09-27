@@ -44,39 +44,69 @@ public class PlayerData
     float _maxMP;
     float _mp;
 
-    public UnityAction<Enums.EEvents, float> OnUpgradeStat;
+    public UnityAction<Enums.EEvents, int> OnUpgradeStat;
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 
-    public float Attack
-    {
-        get { return _attack; }
-        set 
-        {
-            _attack = value;
-            _attackLevel++;
-            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeAttackPoint, _attack);
-        }
-    }
-
-    public float MaxHP
-    {
-        get { return _maxHP; }
+    public int AttackLevel 
+    { 
+        get { return _attackLevel; }
         set
         {
-            _maxHP = value;
-            _hpLevel++;
-            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMaxHP, _maxHP);
+            _attackLevel++;
+
+            // calc attack power (percent)
+            // current attack * (current attack level * percent per level)
+            float attackIncrease = _attack * (_attackLevel * Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount);
+            _attack += attackIncrease;
+
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeAttackPoint, _attackLevel);
         }
     }
+    public float Attack 
+    { 
+        get { return _attack; }
+    }
 
+    public int HPLevel 
+    { 
+        get { return _hpLevel; } 
+        set
+        {
+            _hpLevel++;
+
+            // calc maxHp
+            MaxHP += Define.upgradeInfos[(int)Enums.EUpgradeType.HP].amount;
+
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMaxHP, _hpLevel);
+        }
+    }
+    public float MaxHP 
+    { 
+        get { return _maxHP; }
+        set { _maxHP = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedHP, _hp, _maxHP); }
+    }
+
+    public int UtilLevel
+    {
+        get { return _utilLevel; }
+        set
+        {
+            _utilLevel++;
+
+            // calc util
+            _utilAmount += Define.upgradeInfos[(int)Enums.EUpgradeType.Util].amount;
+
+            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeUtil, _utilLevel);
+        }
+    }
     public float UtilAmount
     {
-        get { return _utilAmount; }
-        set
+        get 
         {
-            _utilAmount = value;
-            _utilLevel++;
-            OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeUtil, _utilAmount);
+            // util amount는 쿨다운, 마나 리젠 상황에 맞춰 별도로 사용한다.
+            // 쿨다운에 적용시 : 쿨타임 - (쿨타임 * utilAmount),
+            // 마나 리젠에 적용시 : 마나 리젠 수치 * (마나 리젠 수치 * utilAmount) 
+            return _utilAmount;
         }
     }
 
@@ -86,7 +116,7 @@ public class PlayerData
         set 
         {
             _hp = value;
-            OnChangedStat?.Invoke(Enums.EEvents.ChangedHP, _hp, _maxHP);
+            OnChangedStat?.Invoke(Enums.EEvents.ChangedHP, _hp, MaxHP);
         }
     }
 
@@ -96,7 +126,7 @@ public class PlayerData
         set
         {
             _mp = value;
-            OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP);
+            OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, MaxMP);
         }
     }
 
@@ -124,27 +154,34 @@ public class PlayerData
         _colliderSize = data.ColliderSize;
         _needToFlip = data.needToFilp;
 
+        // stat
+        _attack = data.Attack;
+        _maxHP = data.MaxHP;
+        _maxMP = data.MaxMP;
+        _hp = MaxHP;
+        _mp = _maxMP;
+        _utilAmount = data.UtilAmount;
+
         return true;
     }
 
-    // execute when player instantiated
-    public bool SetStat()
+    public int GetLevel(Enums.EUpgradeType type)
     {
-        if (DataManager.Instance.PlayerDict.TryGetValue(_id, out PlayerSO data) == false)
+        int level = -1;
+
+        switch (type)
         {
-            Debug.LogError("Player Set Stat Failed...");
-            Debug.LogError("Please Check data");
-            return false;
+            case Enums.EUpgradeType.AttackPoint:
+                level = _attackLevel;
+                break;
+            case Enums.EUpgradeType.HP:
+                level = _hpLevel;
+                break;
+            case Enums.EUpgradeType.Util:
+                level = _utilLevel;
+                break;
         }
 
-        // stat
-        Attack = data.Attack;
-        MaxHP = data.MaxHP;
-        _maxMP = data.MaxMP;
-        HP = MaxHP;
-        MP = _maxMP;
-        UtilAmount = data.UtilAmount;
-
-        return true;
+        return level;
     }
 }
