@@ -28,7 +28,7 @@ public class UI_Player : MonoBehaviour
             imgPlayerIcon.rectTransform.localScale = new Vector3(-1, imgPlayerIcon.rectTransform.localScale.y, imgPlayerIcon.rectTransform.localScale.z);
         }
 
-        player.Data.OnChangedStat += UpdateChanged;
+        GameManager.Instance.Data.PlayerData.OnChangedStat += UpdateChanged;
         GameManager.Instance.Data.OnChangeCoin += UpdateChanged;
 
         // init once
@@ -61,7 +61,7 @@ public class UI_Player : MonoBehaviour
 
     private void OnDisable()
     {
-        if (GameManager.Instance != null)
-            GameManager.Instance.Data.OnChangeCoin -= UpdateChanged;
+        GameManager.Instance.Data.PlayerData.OnChangedStat -= UpdateChanged;
+        GameManager.Instance.Data.OnChangeCoin -= UpdateChanged;
     }
 }

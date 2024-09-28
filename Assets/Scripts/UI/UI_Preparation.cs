@@ -44,7 +44,7 @@ public class UI_Preparation : MonoBehaviour
         if (player == null)
             return;
 
-        player.Data.OnUpgradeStat += UpdateUpgrade;
+        GameManager.Instance.Data.PlayerData.OnUpgradeStat += UpdateUpgrade;
 
         // init once
         UpdateUpgrade(Enums.EEvents.UpgradeAttackPoint, player.Data.AttackLevel);
@@ -99,5 +99,14 @@ public class UI_Preparation : MonoBehaviour
     {
         PlayerController player = FindObjectOfType<PlayerController>();
         player?.UpgradeStat(type);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.Data.PlayerData.OnUpgradeStat -= UpdateUpgrade;
+
+        attackUpgradeGroup.OnClickUpgrade -= Upgrade;
+        hpUpgradeGroup.OnClickUpgrade -= Upgrade;
+        utilUpgradeGroup.OnClickUpgrade -= Upgrade;
     }
 }

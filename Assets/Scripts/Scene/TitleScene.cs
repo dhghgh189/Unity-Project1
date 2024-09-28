@@ -7,7 +7,6 @@ public class TitleScene : MonoBehaviour
 {
     void Update()
     {
-        // test
         if (Input.anyKeyDown)
         {
             SceneManager.LoadScene("Select");
