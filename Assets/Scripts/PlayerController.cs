@@ -185,6 +185,13 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        // 코인이 부족한 경우 return
+        if (GameManager.Instance.Data.Coins < Define.upgradeInfos[(int)type].price)
+        {
+            Debug.Log("not enough coins!");
+            return;
+        }
+
         switch (type)
         {
             case Enums.EUpgradeType.AttackPoint:
