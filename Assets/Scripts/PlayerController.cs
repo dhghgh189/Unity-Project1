@@ -204,5 +204,8 @@ public class PlayerController : MonoBehaviour
                 _data.UtilLevel++;
                 break;
         }
+
+        // 업그레이드 후 coin 차감
+        GameManager.Instance.Data.Coins -= Define.upgradeInfos[(int)type].price;
     }
 }

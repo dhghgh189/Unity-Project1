@@ -15,6 +15,7 @@ public static class Enums
         // Change
         ChangedHP,
         ChangedMP,
+        ChangedCoin,
     }
 
     public enum EUpgradeType

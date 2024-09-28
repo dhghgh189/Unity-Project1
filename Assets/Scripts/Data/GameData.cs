@@ -26,14 +26,14 @@ public class GameData
         set { _playerData = value; }
     }
 
-    public UnityEvent<int> OnChangeCoin;
+    public UnityAction<Enums.EEvents, float, float> OnChangeCoin;
     public int Coins
     {
         get { return _coins; }
         set
         {
             _coins = value;
-            OnChangeCoin?.Invoke(_coins);
+            OnChangeCoin?.Invoke(Enums.EEvents.ChangedCoin, _coins, 0);
         }
     }
 }

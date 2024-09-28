@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Preparation : MonoBehaviour
 {
     [SerializeField] GameObject upgradePanel;
+    [SerializeField] GameObject cheatButton;
+    [SerializeField] GameObject cheatPanel;
     [SerializeField] GameObject blocker;
     [SerializeField] UI_UpgradeGroup attackUpgradeGroup;
     [SerializeField] UI_UpgradeGroup hpUpgradeGroup;
@@ -13,6 +16,14 @@ public class UI_Preparation : MonoBehaviour
     private void Awake()
     {
         HideUpgradePanel();
+
+#if UNITY_EDITOR    
+        HideCheatPanel();
+        cheatButton.SetActive(true);
+#else
+        HideCheatPanel();
+        cheatButton.SetActive(false);
+#endif
 
         attackUpgradeGroup.OnClickUpgrade += Upgrade;
         hpUpgradeGroup.OnClickUpgrade += Upgrade;
@@ -70,6 +81,18 @@ public class UI_Preparation : MonoBehaviour
     {
         blocker.SetActive(false);
         upgradePanel.SetActive(false);
+    }
+
+    public void ShowCheatPanel()
+    {
+        blocker.SetActive(true);
+        cheatPanel.SetActive(true);
+    }
+
+    public void HideCheatPanel()
+    {
+        blocker.SetActive(false);
+        cheatPanel.SetActive(false);
     }
 
     public void Upgrade(Enums.EUpgradeType type)

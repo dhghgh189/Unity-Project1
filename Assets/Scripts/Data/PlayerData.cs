@@ -76,8 +76,10 @@ public class PlayerData
 
             // calc maxHp
             MaxHP += Define.upgradeInfos[(int)Enums.EUpgradeType.HP].amount;
-
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMaxHP, _hpLevel);
+
+            // update hp
+            HP = _maxHP;
         }
     }
     public float MaxHP 
