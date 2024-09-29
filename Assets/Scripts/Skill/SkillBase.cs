@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillBase : MonoBehaviour
 {
@@ -34,6 +35,14 @@ public class SkillBase : MonoBehaviour
         _description = data.Description;
         _coolTime = data.CoolTime;
         _icon = data.Icon;
+    }
+
+    private void Update()
+    {
+        if (_currentCoolTime > 0)
+        {
+            _currentCoolTime -= Time.deltaTime;
+        }
     }
 
     public virtual void DoSkill()

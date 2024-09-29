@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     CapsuleCollider2D _collider;
     PlayerData _data;
     SpriteRenderer _sr;
+    SkillHandler _skill;
 
     int _currentAnim;
     bool _isGrounded = true;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         _anim = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider2D>();
         _sr = GetComponent<SpriteRenderer>();
+        _skill = GetComponent<SkillHandler>();
 
         SetData();
     }
@@ -48,6 +50,12 @@ public class PlayerController : MonoBehaviour
         _sr.flipX = gameData.PlayerData.NeedToFlip;
 
         _data = gameData.PlayerData;
+
+        List<int> useSkillsID = DataManager.Instance.PlayerDict[_data.ID].useSkillsID;
+        for (int i = 0; i < useSkillsID.Count; i++)
+        {
+            _skill.AddSkill(useSkillsID[i]);
+        }
     }
 
     void FixedUpdate()

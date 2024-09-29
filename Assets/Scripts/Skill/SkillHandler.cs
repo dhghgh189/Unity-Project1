@@ -37,11 +37,20 @@ public class SkillHandler : MonoBehaviour
 
     public void DoSkill(Enums.ESkillSlot slot)
     {
+        if (_skills[(int)slot] == null)
+            return;
+
+        if (_skills[(int)slot].CurrentCoolTime > 0)
+            return;
+
         _skills[(int)slot].DoSkill();
     }
 
     public void StopSkill(Enums.ESkillSlot slot)
     {
+        if (_skills[(int)slot] == null)
+            return;
+
         _skills[(int)slot].StopSkill();
     }
 }
