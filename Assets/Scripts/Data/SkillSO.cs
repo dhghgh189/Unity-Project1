@@ -8,7 +8,7 @@ public class SkillSO : ScriptableObject
     [Header("Info")]
     public int ID;
     public string Name;
-    public string Description;
+    [TextArea(1, 5)] public string Description;
     public float CoolTime;
     public Sprite Icon;
     public SkillBase Prefab;

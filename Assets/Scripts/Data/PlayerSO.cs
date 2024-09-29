@@ -8,7 +8,7 @@ public class PlayerSO : ScriptableObject
     [Header("Info")]
     public int ID;
     public string Name;
-    public string Description;
+    [TextArea(1, 3)] public string Description;
 
     [Header("Shape")]
     public RuntimeAnimatorController AnimController;
