@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] float destroyTime;
+
     float _damage;
     Rigidbody2D _rb;
 
@@ -25,5 +27,16 @@ public class Projectile : MonoBehaviour
     public void Fire(Vector2 dir, float speed)
     {
         _rb.AddForce(dir * speed, ForceMode2D.Impulse);
+        StartCoroutine(DestroyRoutine());
+    }
+
+    IEnumerator DestroyRoutine()
+    {
+        WaitForSeconds _destroyTime = new WaitForSeconds(destroyTime);
+
+        yield return _destroyTime;
+
+        // 풀링 필요
+        Destroy(gameObject);
     }
 }
