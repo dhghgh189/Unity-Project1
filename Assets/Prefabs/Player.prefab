@@ -133,6 +133,7 @@ MonoBehaviour:
   maxFallSpeed: 12
   jumpPower: 12
   jumpKey: 122
+  skillKeys: 780000006300000073000000
 --- !u!70 &5923191511903317730
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

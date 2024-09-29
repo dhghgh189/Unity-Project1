@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class SkillBase : MonoBehaviour
 {
     // 스킬 데이터
-    int _id;
-    string _name;
-    string _description;
-    float _coolTime;
-    Sprite _icon;
+    protected int _id;
+    protected string _name;
+    protected string _description;
+    protected float _coolTime;
+    protected Sprite _icon;
+    protected GameObject _ownerObject;
+
     public int ID { get { return _id; } }
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
@@ -18,23 +20,18 @@ public class SkillBase : MonoBehaviour
     public Sprite Icon { get { return _icon; } }
 
     // 고정된 데이터가 아닌 실제 진행중인 쿨타임
-    float _currentCoolTime;
+    protected float _currentCoolTime;
     public float CurrentCoolTime { get { return _currentCoolTime; } }
 
-    public virtual void SetData(int skillID)
+    public virtual void SetData(SkillSO data, GameObject ownerObject)
     {
-        if (DataManager.Instance.SkillDict.TryGetValue(skillID, out SkillSO data) == false)
-        {
-            Debug.LogError($"SkillBase SetData failed... / ID : {skillID}");
-            Debug.LogError("Please check data");
-            return;
-        }
-
         _id = data.ID;
         _name = data.Name;
         _description = data.Description;
         _coolTime = data.CoolTime;
         _icon = data.Icon;
+
+        _ownerObject = ownerObject;
     }
 
     private void Update()

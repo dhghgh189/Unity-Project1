@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f567c64112ee0d540a66fa8bf0599658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 7
+  speed: 12
+  fireballPrefab: {fileID: 7909104948601120148, guid: 3f9becd6ad437494191a4766eb7ba7a1, type: 3}
+  fireAngle: 20

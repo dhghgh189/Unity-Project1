@@ -61,7 +61,10 @@ public class UI_Player : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.Data.PlayerData.OnChangedStat -= UpdateChanged;
-        GameManager.Instance.Data.OnChangeCoin -= UpdateChanged;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.Data.PlayerData.OnChangedStat -= UpdateChanged;
+            GameManager.Instance.Data.OnChangeCoin -= UpdateChanged;
+        }       
     }
 }

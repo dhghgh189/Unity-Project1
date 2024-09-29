@@ -24,12 +24,15 @@ public class SkillHandler : MonoBehaviour
             return;
         }
 
-        SkillBase skill = Instantiate(data.Prefab);
+        SkillBase skill = Instantiate(data.Prefab);        
         if (skill == null) 
         {
             Debug.LogError($"Can't find SkillBase Component! / ID : {skillID}");
             return;
         }
+
+        skill.SetData(data, gameObject);
+        skill.transform.SetParent(gameObject.transform);
 
         // 스킬 추가
         _skills[(int)data.Slot] = skill;

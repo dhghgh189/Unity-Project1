@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpPower;
     [SerializeField] KeyCode jumpKey;
 
+    [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.Max];
+
     Rigidbody2D _rb;
     Animator _anim;
     CapsuleCollider2D _collider;
@@ -25,6 +27,8 @@ public class PlayerController : MonoBehaviour
     bool _isGrounded = true;
     bool _tryToJump = false;
     float x;
+
+    public float Direction { get { return transform.localScale.x; } }
 
     public PlayerData Data { get { return _data; } }
 
@@ -101,6 +105,19 @@ public class PlayerController : MonoBehaviour
             {
                 _tryToJump = false;
                 _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
+            }
+        }
+
+        for (int i = 0; i < skillKeys.Length; i++)
+        {
+            if (Input.GetKeyDown(skillKeys[i]))
+            {
+                _skill.DoSkill((Enums.ESkillSlot)i);
+            }
+
+            if (Input.GetKeyUp(skillKeys[i])) 
+            {
+                _skill.StopSkill((Enums.ESkillSlot)i);
             }
         }
 

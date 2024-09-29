@@ -103,7 +103,10 @@ public class UI_Preparation : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.Data.PlayerData.OnUpgradeStat -= UpdateUpgrade;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.Data.PlayerData.OnUpgradeStat -= UpdateUpgrade;
+        }
 
         attackUpgradeGroup.OnClickUpgrade -= Upgrade;
         hpUpgradeGroup.OnClickUpgrade -= Upgrade;
