@@ -9,6 +9,7 @@ public class SkillSO : ScriptableObject
     public int ID;
     public string Name;
     [TextArea(1, 5)] public string Description;
+    public Enums.ESkillSlot Slot;
     public float CoolTime;
     public Sprite Icon;
     public SkillBase Prefab;

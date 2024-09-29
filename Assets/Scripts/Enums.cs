@@ -24,4 +24,11 @@ public static class Enums
         HP,
         Util
     }
+
+    public enum ESkillSlot
+    {
+        Slot1,
+        Slot2,
+        Slot3
+    }
 }
