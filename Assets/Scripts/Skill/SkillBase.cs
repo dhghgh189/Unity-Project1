@@ -37,4 +37,9 @@ public class SkillBase : MonoBehaviour
         // 스킬 사용 시의 행동
         _currentCoolTime = _coolTime;
     }
+
+    public virtual void StopSkill()
+    {
+        // 스킬 중단 시의 행동
+    }
 }
