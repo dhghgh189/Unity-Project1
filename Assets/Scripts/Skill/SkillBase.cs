@@ -10,17 +10,21 @@ public class SkillBase : MonoBehaviour
     string _description;
     float _coolTime;
     Sprite _icon;
+    public int ID { get { return _id; } }
+    public string Name { get { return _name; } }
+    public string Description { get { return _description; } }
+    public float CoolTime { get { return _coolTime; } }
+    public Sprite Icon { get { return _icon; } }
 
     // 고정된 데이터가 아닌 실제 진행중인 쿨타임
     float _currentCoolTime;
-
     public float CurrentCoolTime { get { return _currentCoolTime; } }
 
     public virtual void SetData(int skillID)
     {
         if (DataManager.Instance.SkillDict.TryGetValue(skillID, out SkillSO data) == false)
         {
-            Debug.LogError("SkillBase SetData failed...");
+            Debug.LogError($"SkillBase SetData failed... / ID : {skillID}");
             Debug.LogError("Please check data");
             return;
         }

@@ -29,6 +29,7 @@ public static class Enums
     {
         Slot1,
         Slot2,
-        Slot3
+        Slot3,
+        Max,
     }
 }

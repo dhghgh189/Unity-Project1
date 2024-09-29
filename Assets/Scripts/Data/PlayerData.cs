@@ -140,7 +140,7 @@ public class PlayerData
     {
         if (DataManager.Instance.PlayerDict.TryGetValue(dataID, out PlayerSO data) == false)
         {
-            Debug.LogError("Player Set Data Failed...");
+            Debug.LogError($"Player Set Data Failed... / ID : {dataID}");
             Debug.LogError("Please Check data");
             return false;
         }
