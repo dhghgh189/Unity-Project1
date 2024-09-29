@@ -18,7 +18,10 @@ public class DataManager : Singleton<DataManager>
         get { return playerDict; }
     }
 
-    public Dictionary<int, SkillSO> SkillDict;
+    public Dictionary<int, SkillSO> SkillDict
+    {
+        get { return skillDict; }
+    }
 
     protected override void Init()
     {
