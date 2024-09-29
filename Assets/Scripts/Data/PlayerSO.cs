@@ -22,4 +22,7 @@ public class PlayerSO : ScriptableObject
     public float MaxHP;
     public float MaxMP;
     public float UtilAmount;
+
+    [Header("Skills")]
+    public List<int> useSkillsID;
 }
