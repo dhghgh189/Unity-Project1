@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "new BossSO", menuName = "Scriptable Objects/BossSO")]
+public class BossSO : ScriptableObject
+{
+    [Header("Info")]
+    public int ID;
+    public string Name;
+    [TextArea(1, 3)] public string Description;
+
+    [Header("Shape")]
+    public Vector3 Scale;
+    public RuntimeAnimatorController AnimController;
+    public Vector2 ColliderOffset;
+    public Vector2 ColliderSize;
+    public Sprite Icon;
+    public bool needToFilp = false;
+
+    [Header("Stats")]
+    public float MaxHP;
+    public float MaxMP;
+
+    [Header("Skills")]
+    public List<int> useSkillsID;
+}
