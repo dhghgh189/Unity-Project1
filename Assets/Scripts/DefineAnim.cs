@@ -8,5 +8,5 @@ public static class DefineAnim
     public static readonly int HASH_RUN = Animator.StringToHash("Run");
     public static readonly int HASH_JUMP = Animator.StringToHash("Jump");
     public static readonly int HASH_FALL = Animator.StringToHash("Fall");
-    public static readonly int HASH_ATTACK = Animator.StringToHash("Attack");
+    public static readonly int HASH_SKILL = Animator.StringToHash("Skill");
 }

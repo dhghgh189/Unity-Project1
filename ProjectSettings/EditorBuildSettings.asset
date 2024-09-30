@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Preparation.unity
     guid: 33980514172e0244089046a94249ac53
+  - enabled: 1
+    path: Assets/Temp/Game.unity
+    guid: 47e05d6e5fbc3944494a3902d5143a98
   m_configObjects: {}

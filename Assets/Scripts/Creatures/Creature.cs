@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class Creature : MonoBehaviour
 {
-    protected float _maxHp;
+    protected float _maxHP;
     protected float _hp;   
     
-    public float HP { get { return _hp; } protected set { _hp = value; OnChangedHP?.Invoke(_hp, _maxHp); } }
-    public float MaxHP { get { return _maxHp; } }
+    public float HP { get { return _hp; } protected set { _hp = value; OnChangedHP?.Invoke(_hp, _maxHP); } }
+    public float MaxHP { get { return _maxHP; } }
 
     public UnityAction<float, float> OnChangedHP;
     public UnityAction OnDead;

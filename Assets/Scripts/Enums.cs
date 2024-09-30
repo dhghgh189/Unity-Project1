@@ -27,9 +27,12 @@ public static class Enums
 
     public enum ESkillSlot
     {
-        Slot1,
-        Slot2,
-        Slot3,
-        Max,
+        PlayerSkill1,
+        PlayerSkill2,
+        PlayerSkill3,
+        PlayerSkill_Max,
+
+        BossSkill,
+        BossUltimate
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Move : BossSkill
 {
-    [SerializeField] float damage;
     [SerializeField] float speed;
 
     public override void DoSkill()

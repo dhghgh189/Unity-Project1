@@ -14,7 +14,7 @@ public class PlayerController : Creature
     [SerializeField] float jumpPower;
     [SerializeField] KeyCode jumpKey;
 
-    [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.Max];
+    [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.PlayerSkill_Max];
 
     Rigidbody2D _rb;
     Animator _anim;
@@ -62,8 +62,8 @@ public class PlayerController : Creature
         }
 
         // set health
-        _maxHp = _data.MaxHP;
-        HP = _maxHp;
+        _maxHP = _data.MaxHP;
+        HP = _maxHP;
 
         _data.OnHealthEvent += UpdateHP;
     }
@@ -243,7 +243,7 @@ public class PlayerController : Creature
     // health와 data 연동을 위한 콜백
     public void UpdateHP(float maxHP)
     {
-        _maxHp = maxHP;
-        HP = _maxHp;
+        _maxHP = maxHP;
+        HP = _maxHP;
     }
 }

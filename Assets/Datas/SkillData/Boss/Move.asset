@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 1000
   Name: "\uC774\uB3D9"
   Description: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C\uB85C \uC774\uB3D9\uD569\uB2C8\uB2E4."
-  Slot: 0
+  Slot: 4
   CoolTime: 0.1
-  Icon: {fileID: -1621301469, guid: 69b1460dbdd8d964d817bf4f5a48447a, type: 3}
-  Prefab: {fileID: 19461319432194176, guid: 141667fae26323c4fafce87f7d43c9a0, type: 3}
+  Icon: {fileID: 1389717538, guid: 70f37b9611beee34a86dc12ab2c4b94e, type: 3}
+  Prefab: {fileID: -7297775071669955602, guid: 1e1bfafb0de1fc84db83d5ab9b9be957, type: 3}
