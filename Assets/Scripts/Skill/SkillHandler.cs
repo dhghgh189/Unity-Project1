@@ -77,6 +77,10 @@ public class SkillHandler : MonoBehaviour
         if (_skills[(int)slot].CurrentCoolTime > 0)
             return;
 
+        // 스킬사용에 필요한 마나가 부족한 경우
+        if (_owner.MP < _skills[(int)slot].MPAmount)
+            return;
+
         _skills[(int)slot].DoSkill();
     }
 

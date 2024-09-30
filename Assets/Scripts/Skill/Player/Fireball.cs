@@ -51,7 +51,7 @@ public class Fireball : SkillBase
             fireball.transform.position = _owner.transform.position + ((Vector3.right * _owner.Direction) + Vector3.up) * 0.5f;
             fireball.Fire(dir, speed);
 
-            _currentCoolTime = _coolTime;
+            base.DoSkill();
             yield return waitTime;
         }       
     }

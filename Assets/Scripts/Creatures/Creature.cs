@@ -10,6 +10,8 @@ public class Creature : MonoBehaviour
     
     public float HP { get { return _hp; } protected set { _hp = value; OnChangedHP?.Invoke(_hp, _maxHP); } }
     public float MaxHP { get { return _maxHP; } }
+    public virtual float MP { get; set; }
+    public virtual float MaxMP { get; set; }
 
     public UnityAction<float, float> OnChangedHP;
     public UnityAction OnDead;

@@ -32,8 +32,8 @@ public class BossController : Creature
 
     public float WaitTime { get { return waitTime; } }
     public SkillHandler Skill { get { return _skill; } }
-    public float MaxMP { get { return _maxMP; } }
-    public float MP { get { return _mp; } set { _mp = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP); } }
+    public override float MaxMP { get { return _maxMP; } }
+    public override float MP { get { return _mp; } set { _mp = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP); } }
 
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 

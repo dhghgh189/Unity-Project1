@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PlayerController : Creature
 {
@@ -30,7 +29,7 @@ public class PlayerController : Creature
     float x;
 
     public PlayerData Data { get { return _data; } }
-    public float MP { get { return _data.MP; } set { _data.MP = value; } }
+    public override float MP { get { return _data.MP; } set { _data.MP = value; } }
 
     void Awake()
     {
