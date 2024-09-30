@@ -33,6 +33,13 @@ public class Fireball : SkillBase
 
         while (true)
         {
+            // 마나가 소비되는 스킬로 변경되는 경우 사용
+            if (_owner.MP < _mpAmount)
+            {
+                yield return null;
+                continue;
+            }
+
             // 풀링 적용 필요
             Projectile fireball = Instantiate(fireballPrefab);
             if (fireball == null)
@@ -53,6 +60,6 @@ public class Fireball : SkillBase
 
             base.DoSkill();
             yield return waitTime;
-        }       
+        }
     }
 }

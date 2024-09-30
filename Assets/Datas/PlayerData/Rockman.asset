@@ -24,4 +24,5 @@ MonoBehaviour:
   MaxHP: 4
   MaxMP: 150
   UtilAmount: 0
+  MPGenPerSecond: 10
   useSkillsID: 01000000

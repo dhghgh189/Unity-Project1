@@ -29,6 +29,7 @@ public class PlayerController : Creature
     float x;
 
     public PlayerData Data { get { return _data; } }
+    public override float MaxMP { get { return _data.MaxMP; } }
     public override float MP { get { return _data.MP; } set { _data.MP = value; } }
 
     void Awake()
@@ -126,6 +127,11 @@ public class PlayerController : Creature
             {
                 _skill.StopSkill((Enums.ESkillSlot)i);
             }
+        }
+
+        if (MP < MaxMP)
+        {
+            MP += _data.MPGenPerSecond * Time.deltaTime;
         }
 
         // Animation

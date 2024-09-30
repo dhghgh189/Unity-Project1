@@ -42,6 +42,7 @@ public class PlayerData
     /// //////////////////
     float _maxMP;
     float _mp;
+    float _mpGenPerSecond;
 
     public UnityAction<Enums.EEvents, int> OnUpgradeStat;
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
@@ -58,7 +59,7 @@ public class PlayerData
 
             // calc attack power (percent)
             // current attack * (current attack level * percent per level)
-            float attackIncrease = _attack * (_attackLevel * Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount);
+            float attackIncrease = _attack * (_attackLevel * (Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount / 100f));
             _attack += attackIncrease;
 
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeAttackPoint, _attackLevel);
@@ -97,6 +98,10 @@ public class PlayerData
             // calc util
             _utilAmount += Define.upgradeInfos[(int)Enums.EUpgradeType.Util].amount;
 
+            // 마나 리젠 양 변경
+            // 마나 리젠 양 += (마나 리젠 양 * (utilAmount / 100f))
+            _mpGenPerSecond += (_mpGenPerSecond * (_utilAmount / 100f));
+
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeUtil, _utilLevel);
         }
     }
@@ -105,8 +110,8 @@ public class PlayerData
         get 
         {
             // util amount는 쿨다운, 마나 리젠 상황에 맞춰 별도로 사용한다.
-            // 쿨다운에 적용시 : 쿨타임 - (쿨타임 * utilAmount),
-            // 마나 리젠에 적용시 : 마나 리젠 수치 * (마나 리젠 수치 * utilAmount) 
+            // 마나 리젠에 적용시 : 위의 UtilLevel 프로퍼티 내용대로 동작
+            // 쿨다운에 적용시 : 쿨타임 - (쿨타임 * (utilAmount / 100f)),
             return _utilAmount;
         }
     }
@@ -122,6 +127,8 @@ public class PlayerData
     }
 
     public float MaxMP { get { return _maxMP; } }
+
+    public float MPGenPerSecond {  get { return _mpGenPerSecond; } }
     #endregion
 
     // execute only once
@@ -150,6 +157,7 @@ public class PlayerData
         _maxHP = data.MaxHP;
         _maxMP = data.MaxMP;
         _mp = _maxMP;
+        _mpGenPerSecond = data.MPGenPerSecond;
         _utilAmount = data.UtilAmount;
 
         return true;

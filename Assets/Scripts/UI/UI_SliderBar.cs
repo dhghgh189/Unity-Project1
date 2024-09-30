@@ -23,6 +23,6 @@ public class UI_SliderBar : MonoBehaviour
         if (bPrintFloat)
             txtValue.text = $"{current:F2} / {max:F2}";
         else
-            txtValue.text = $"{current} / {max}";
+            txtValue.text = $"{(int)current} / {(int)max}";
     }
 }
