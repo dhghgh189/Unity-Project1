@@ -9,13 +9,11 @@ public class BossController : Creature
 {
     [SerializeField] float waitTime;
 
-    Rigidbody2D _rb;
+    //Rigidbody2D _rb;
     Animator _anim;
     CapsuleCollider2D _collider;
     SpriteRenderer _sr;
     SkillHandler _skill;
-
-    PlayerController _target;
 
     float _maxMP;
     float _mp;
@@ -27,8 +25,6 @@ public class BossController : Creature
     BossState[] _states = new BossState[(int)State.Max];
 
     int _currentAnim;
-
-    public PlayerController Target { get { return _target; } }
 
     public float WaitTime { get { return waitTime; } }
     public SkillHandler Skill { get { return _skill; } }
@@ -50,8 +46,20 @@ public class BossController : Creature
         _states[(int)State.Wait] = new BossStateWait(this);
 
         // State Init
-        _curState = State.Idle;
+        _curState = State.Wait;
         _states[(int)_curState].OnEnter();
+    }
+
+    private void Start()
+    {
+        PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        if (player == null)
+        {
+            Debug.LogError("Boss Can't find Player!");
+            return;
+        }
+
+        _target = player;
     }
 
     public void SetInfo(int bossID)
@@ -67,6 +75,8 @@ public class BossController : Creature
         _collider.offset = data.ColliderOffset;
         _collider.size = data.ColliderSize;
         _sr.flipX = data.needToFilp;
+
+        transform.localScale = data.Scale;
 
         _maxMP = data.MaxMP;
         _mp = 0;
@@ -105,6 +115,7 @@ public class BossController : Creature
         switch (_curState)
         {
             case State.Idle:
+            case State.Wait:
                 checkAnim = DefineAnim.HASH_IDLE;
                 break;
             case State.Skill:

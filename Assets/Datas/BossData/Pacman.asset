@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   Name: "\uD329\uB9E8"
   Description: "\uD329\uB9E8"
-  Scale: {x: 2, y: 2, z: 2}
+  Scale: {x: -2, y: 2, z: 2}
   AnimController: {fileID: 9100000, guid: f1468ec3e1035d34388dca7b8a56b881, type: 2}
   ColliderOffset: {x: 0.06713319, y: 1.002063}
   ColliderSize: {x: 2.010343, y: 2.010343}

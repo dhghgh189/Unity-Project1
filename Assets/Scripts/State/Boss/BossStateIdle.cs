@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class BossStateIdle : BossState
 {
-    /* todo : 
-         * 1-1. 랜덤하게 스킬 하나 불러와서 doskill하고 skill 상태로 이동시키기
-         * 1-2. 마나가 다 찬 경우 ultimate 불러와서 doskill하고 skill 상태로 이동시키기
-    */
-
     public BossStateIdle(BossController owner) : base(owner)
     {
 
@@ -34,8 +29,6 @@ public class BossStateIdle : BossState
                 _owner.MP = 0;
                 return;
             }
-
-            skill.DoSkill();
         }
         else // 마나가 덜 찬 경우 일반 스킬중 하나를 시전
         {
@@ -48,10 +41,10 @@ public class BossStateIdle : BossState
             }
         }
 
-        // 스킬 시전
-        skill.DoSkill();
         // 스킬 상태로 전이
         _owner.ChangeState(BossController.State.Skill);
+        // 스킬 시전
+        skill.DoSkill();
     }
 
     public override void OnExit()

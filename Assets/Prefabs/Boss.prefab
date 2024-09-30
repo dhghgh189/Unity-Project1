@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5923191511903317729}
   - component: {fileID: 4481619953768602386}
   - component: {fileID: 2597657550820878676}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Boss
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: fbc4e39984583084fbe786bd97072296, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410e588cb3a88eb4fbf6a46a5f51026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 4
 --- !u!70 &5923191511903317730
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5923191512367926252}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: RightFeet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5923191513036672176}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: LeftFeet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

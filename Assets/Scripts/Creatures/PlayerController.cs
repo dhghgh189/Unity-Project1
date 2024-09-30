@@ -16,7 +16,7 @@ public class PlayerController : Creature
 
     [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.PlayerSkill_Max];
 
-    Rigidbody2D _rb;
+    //Rigidbody2D _rb;
     Animator _anim;
     CapsuleCollider2D _collider;
     PlayerData _data;

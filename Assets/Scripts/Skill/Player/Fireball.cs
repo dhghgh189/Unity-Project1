@@ -14,7 +14,10 @@ public class Fireball : SkillBase
     public override void DoSkill()
     {
         if (_fireRoutine != null)
+        {
             StopCoroutine(_fireRoutine);
+            _fireRoutine = null;
+        }
 
         _fireRoutine = StartCoroutine(FireRoutine());
     }
@@ -24,6 +27,7 @@ public class Fireball : SkillBase
         if (_fireRoutine != null)
         {
             StopCoroutine(_fireRoutine);
+            _fireRoutine = null;
         }
     }
 

@@ -6,17 +6,28 @@ using UnityEngine.Events;
 public class Creature : MonoBehaviour
 {
     protected float _maxHP;
-    protected float _hp;   
+    protected float _hp;
+    protected Creature _target;
+    protected Rigidbody2D _rb;
     
+    public Rigidbody2D Rb { get { return _rb; } }
+
     public float HP { get { return _hp; } protected set { _hp = value; OnChangedHP?.Invoke(_hp, _maxHP); } }
     public float MaxHP { get { return _maxHP; } }
     public virtual float MP { get; set; }
     public virtual float MaxMP { get; set; }
+    public Creature Target { get { return _target; ; } set { _target = value; } }
 
     public UnityAction<float, float> OnChangedHP;
     public UnityAction OnDead;
 
-    public float Direction { get { return transform.localScale.x; } }
+    public float Direction 
+    { 
+        get 
+        { 
+            return transform.localScale.x < 0 ? -1 : 1; 
+        }
+    }
 
     public virtual void TakeDamage(float damage)
     {
