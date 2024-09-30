@@ -40,12 +40,14 @@ public class PlayerData
     int _hpLevel;
     int _utilLevel;
     /// //////////////////
-    float _hp;
     float _maxMP;
     float _mp;
 
     public UnityAction<Enums.EEvents, int> OnUpgradeStat;
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
+
+    // player health 연동을 위한 전용 이벤트
+    public UnityAction<float> OnHealthEvent;
 
     public int AttackLevel 
     { 
@@ -77,15 +79,12 @@ public class PlayerData
             // calc maxHp
             MaxHP += Define.upgradeInfos[(int)Enums.EUpgradeType.HP].amount;
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeMaxHP, _hpLevel);
-
-            // update hp
-            HP = _maxHP;
         }
     }
     public float MaxHP 
     { 
         get { return _maxHP; }
-        set { _maxHP = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedHP, _hp, _maxHP); }
+        private set { _maxHP = value; OnHealthEvent?.Invoke(_maxHP); }
     }
 
     public int UtilLevel
@@ -109,16 +108,6 @@ public class PlayerData
             // 쿨다운에 적용시 : 쿨타임 - (쿨타임 * utilAmount),
             // 마나 리젠에 적용시 : 마나 리젠 수치 * (마나 리젠 수치 * utilAmount) 
             return _utilAmount;
-        }
-    }
-
-    public float HP
-    {
-        get { return _hp; }
-        set 
-        {
-            _hp = value;
-            OnChangedStat?.Invoke(Enums.EEvents.ChangedHP, _hp, MaxHP);
         }
     }
 
@@ -160,7 +149,6 @@ public class PlayerData
         _attack = data.Attack;
         _maxHP = data.MaxHP;
         _maxMP = data.MaxMP;
-        _hp = MaxHP;
         _mp = _maxMP;
         _utilAmount = data.UtilAmount;
 

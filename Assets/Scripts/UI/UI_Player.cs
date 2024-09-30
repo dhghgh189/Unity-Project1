@@ -28,11 +28,13 @@ public class UI_Player : MonoBehaviour
             imgPlayerIcon.rectTransform.localScale = new Vector3(-1, imgPlayerIcon.rectTransform.localScale.y, imgPlayerIcon.rectTransform.localScale.z);
         }
 
+        player.OnChangedHP += UpdateHP;
+
         GameManager.Instance.Data.PlayerData.OnChangedStat += UpdateChanged;
         GameManager.Instance.Data.OnChangeCoin += UpdateChanged;
 
         // init once
-        healthBar.UpdateSliderBar(player.Data.HP, player.Data.MaxHP, true);
+        healthBar.UpdateSliderBar(player.HP, player.Data.MaxHP, true);
         manaBar.UpdateSliderBar(player.Data.MP, player.Data.MaxMP, false);
         txtCoins.text = $"{GameManager.Instance.Data.Coins}";
     }
@@ -41,11 +43,6 @@ public class UI_Player : MonoBehaviour
     {
         switch (eEvent)
         {
-            case Enums.EEvents.ChangedHP:
-                {                  
-                    healthBar.UpdateSliderBar(current, max, true);
-                }
-                break;
             case Enums.EEvents.ChangedMP:
                 {
                     manaBar.UpdateSliderBar(current, max, false);
@@ -59,8 +56,20 @@ public class UI_Player : MonoBehaviour
         }
     }
 
+    // HP´Â ºÐ¸®
+    public void UpdateHP(float hp, float maxHp)
+    {
+        healthBar.UpdateSliderBar(hp, maxHp, true);
+    }
+
     private void OnDisable()
     {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.OnChangedHP -= UpdateHP;
+        }
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.Data.PlayerData.OnChangedStat -= UpdateChanged;

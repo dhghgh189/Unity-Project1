@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Creature
 {
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] Transform leftFeet;
@@ -60,6 +60,12 @@ public class PlayerController : MonoBehaviour
         {
             _skill.AddSkill(useSkillsID[i]);
         }
+
+        // set health
+        _maxHp = _data.MaxHP;
+        HP = _maxHp;
+
+        _data.OnHealthEvent += UpdateHP;
     }
 
     void FixedUpdate()
@@ -232,5 +238,12 @@ public class PlayerController : MonoBehaviour
 
         // 업그레이드 후 coin 차감
         GameManager.Instance.Data.Coins -= Define.upgradeInfos[(int)type].price;
+    }
+
+    // health와 data 연동을 위한 콜백
+    public void UpdateHP(float maxHP)
+    {
+        _maxHp = maxHP;
+        HP = _maxHp;
     }
 }

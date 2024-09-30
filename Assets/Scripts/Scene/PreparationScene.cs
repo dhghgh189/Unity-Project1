@@ -27,4 +27,13 @@ public class PreparationScene : MonoBehaviour
             Debug.LogError("Can't find Player!");
         }
     }
+
+    // test
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            SceneManager.LoadScene("Game");
+        }
+    }
 }

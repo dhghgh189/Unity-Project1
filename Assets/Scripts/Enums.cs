@@ -13,7 +13,7 @@ public static class Enums
         UpgradeUtil,
 
         // Change
-        ChangedHP,
+        //ChangedHP, -> HP는 따로 관리되도록 분리
         ChangedMP,
         ChangedCoin,
     }
