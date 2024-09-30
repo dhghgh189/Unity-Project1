@@ -6,6 +6,7 @@ using UnityEngine;
 public class BossStateWait : BossState
 {
     // skill 사용 후 잠시 대기하는 상태
+    // owner에서 설정한 waittime 만큼 대기한다음 idle로 돌아간다.
 
     public BossStateWait(BossController owner) : base(owner)
     {

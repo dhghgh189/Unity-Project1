@@ -23,4 +23,5 @@ MonoBehaviour:
   needToFilp: 0
   MaxHP: 5000
   MaxMP: 800
+  MPGenPerSecond: 5
   useSkillsID: e8030000

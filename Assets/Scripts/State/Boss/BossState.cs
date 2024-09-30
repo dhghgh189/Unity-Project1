@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossState : BaseState
 {
-    BossController _owner;
+    protected BossController _owner;
 
     public BossState(BossController owner)
     {

@@ -21,6 +21,8 @@ public class BossSO : ScriptableObject
     [Header("Stats")]
     public float MaxHP;
     public float MaxMP;
+    // 초당 마나 젠 양
+    public float MPGenPerSecond;
 
     [Header("Skills")]
     public List<int> useSkillsID;

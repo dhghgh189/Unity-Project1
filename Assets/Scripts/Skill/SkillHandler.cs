@@ -11,6 +11,8 @@ public class SkillHandler : MonoBehaviour
     // 보스 전용
     SkillBase _ultimate;
 
+    public SkillBase Ultimate { get { return _ultimate; } }
+
     public void AddSkill(int skillID)
     {
         // ID 검사
@@ -42,7 +44,10 @@ public class SkillHandler : MonoBehaviour
 
         // 스킬 추가
         //_skills[(int)data.Slot] = skill;
-        _skills.Add(skill);
+        if (data.Slot == Enums.ESkillSlot.BossUltimate)
+            _ultimate = skill;
+        else
+            _skills.Add(skill);
     }
 
     public SkillBase GetRandomSkill()

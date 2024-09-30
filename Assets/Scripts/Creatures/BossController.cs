@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BossController : Creature
 {
@@ -18,6 +19,7 @@ public class BossController : Creature
 
     float _maxMP;
     float _mp;
+    float _mpGenPerSecond;
 
     public enum State { Idle, Skill, Wait, Max }
     State _curState;
@@ -30,6 +32,11 @@ public class BossController : Creature
 
     public float Direction { get { return transform.localScale.x; } }
     public float WaitTime { get { return waitTime; } }
+    public SkillHandler Skill { get { return _skill; } }
+    public float MaxMP { get { return _maxMP; } }
+    public float MP { get { return _mp; } set { _mp = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP); } }
+
+    public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 
     void Awake()
     {
@@ -63,7 +70,8 @@ public class BossController : Creature
         _sr.flipX = data.needToFilp;
 
         _maxMP = data.MaxMP;
-        _mp = _maxMP;
+        _mp = 0;
+        _mpGenPerSecond = data.MPGenPerSecond;
 
         List<int> useSkillsID = data.useSkillsID;
         for (int i = 0; i < useSkillsID.Count; i++)
@@ -79,6 +87,12 @@ public class BossController : Creature
     void Update()
     {
         _states[(int)_curState].OnUpdate();
+
+        if (_mp < _maxMP)
+        {
+            // ÃÊ´ç ¸¶³ª Á¨
+            MP += _mpGenPerSecond * Time.deltaTime;
+        }
 
         UpdateAnim();
     }
@@ -105,7 +119,7 @@ public class BossController : Creature
         }
     }
 
-    void SetState(State state)
+    public void ChangeState(State state)
     {
         _states[(int)_curState].OnExit();
         _curState = state;
