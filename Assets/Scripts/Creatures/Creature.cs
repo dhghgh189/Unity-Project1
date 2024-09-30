@@ -14,6 +14,8 @@ public class Creature : MonoBehaviour
     public UnityAction<float, float> OnChangedHP;
     public UnityAction OnDead;
 
+    public float Direction { get { return transform.localScale.x; } }
+
     public virtual void TakeDamage(float damage)
     {
         HP -= damage;

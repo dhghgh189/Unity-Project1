@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : PlayerSkill
+public class Fireball : SkillBase
 {
     [SerializeField] float damage;
     [SerializeField] float speed;
@@ -45,7 +45,7 @@ public class Fireball : PlayerSkill
 
             // 설정한 발사 각도에 따라 방향 계산
             Vector2 dir = new Vector2(Mathf.Cos(fireAngle * Mathf.Deg2Rad), Mathf.Sin(fireAngle * Mathf.Deg2Rad));
-            dir.x *= Owner.Direction;
+            dir.x *= _owner.Direction;
 
             // 스킬 시전자의 위치로부터 0.5만큼 우상향한 지점으로 이동
             fireball.transform.position = _owner.transform.position + ((Vector3.right * _owner.Direction) + Vector3.up) * 0.5f;

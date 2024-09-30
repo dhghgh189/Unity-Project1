@@ -30,7 +30,6 @@ public class BossController : Creature
 
     public PlayerController Target { get { return _target; } }
 
-    public float Direction { get { return transform.localScale.x; } }
     public float WaitTime { get { return waitTime; } }
     public SkillHandler Skill { get { return _skill; } }
     public float MaxMP { get { return _maxMP; } }
@@ -72,6 +71,8 @@ public class BossController : Creature
         _maxMP = data.MaxMP;
         _mp = 0;
         _mpGenPerSecond = data.MPGenPerSecond;
+
+        _skill.SetOwner(this);
 
         List<int> useSkillsID = data.useSkillsID;
         for (int i = 0; i < useSkillsID.Count; i++)

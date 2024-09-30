@@ -11,19 +11,20 @@ public class SkillBase : MonoBehaviour
     protected string _description;
     protected float _coolTime;
     protected Sprite _icon;
-    protected GameObject _ownerObject;
+    protected Creature _owner;
 
     public int ID { get { return _id; } }
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
     public float CoolTime { get { return _coolTime; } }
     public Sprite Icon { get { return _icon; } }
+    public Creature Owner { get { return _owner; } }
 
     // 고정된 데이터가 아닌 실제 진행중인 쿨타임
     protected float _currentCoolTime;
     public float CurrentCoolTime { get { return _currentCoolTime; } }
 
-    public virtual void SetData(SkillSO data, GameObject ownerObject)
+    public virtual void SetData(SkillSO data, Creature owner)
     {
         _id = data.ID;
         _name = data.Name;
@@ -31,7 +32,7 @@ public class SkillBase : MonoBehaviour
         _coolTime = data.CoolTime;
         _icon = data.Icon;
 
-        _ownerObject = ownerObject;
+        _owner = owner;
     }
 
     private void Update()

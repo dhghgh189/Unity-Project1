@@ -7,11 +7,17 @@ public class SkillHandler : MonoBehaviour
 {
     //SkillBase[] _skills = new SkillBase[(int)Enums.ESkillSlot.Max];
     List<SkillBase> _skills = new List<SkillBase>();
+    Creature _owner;
 
     // 보스 전용
     SkillBase _ultimate;
 
     public SkillBase Ultimate { get { return _ultimate; } }
+
+    public void SetOwner(Creature owner)
+    {
+        _owner = owner;
+    }
 
     public void AddSkill(int skillID)
     {
@@ -39,7 +45,7 @@ public class SkillHandler : MonoBehaviour
             return;
         }
 
-        skill.SetData(data, gameObject);
+        skill.SetData(data, _owner);
         skill.transform.SetParent(gameObject.transform);
 
         // 스킬 추가

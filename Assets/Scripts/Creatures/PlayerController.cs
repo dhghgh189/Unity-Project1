@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class PlayerController : Creature
 {
@@ -28,9 +29,8 @@ public class PlayerController : Creature
     bool _tryToJump = false;
     float x;
 
-    public float Direction { get { return transform.localScale.x; } }
-
     public PlayerData Data { get { return _data; } }
+    public float MP { get { return _data.MP; } set { _data.MP = value; } }
 
     void Awake()
     {
@@ -54,6 +54,8 @@ public class PlayerController : Creature
         _sr.flipX = gameData.PlayerData.NeedToFlip;
 
         _data = gameData.PlayerData;
+
+        _skill.SetOwner(this);
 
         List<int> useSkillsID = DataManager.Instance.PlayerDict[_data.ID].useSkillsID;
         for (int i = 0; i < useSkillsID.Count; i++)
