@@ -53,3 +53,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6586772b31bc09d49b134a290a21880c, type: 2}
   listBossSO:
   - {fileID: 11400000, guid: 0d130124046da1a4a86fda77613359a2, type: 2}
+  listStageSO:
+  - {fileID: 11400000, guid: 7301376d19b994d41b9e6b96bab5e3d9, type: 2}

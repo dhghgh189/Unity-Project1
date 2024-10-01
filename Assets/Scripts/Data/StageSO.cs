@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSO : MonoBehaviour
+[CreateAssetMenu(fileName = "new StageSO", menuName = "Scriptable Objects/StageSO")]
+public class StageSO : ScriptableObject
 {
     [Header("Info")]
     public int ID;
-    public string BossName;
-    public float GameTime;
+    public int BossID;
+    public Vector2 PlayerPos;
+    public Vector2 BossPos;
 
-    [Header("Tilemap")]
+    [Header("Stage Map")]
     public GameObject MapPrefab;
 }

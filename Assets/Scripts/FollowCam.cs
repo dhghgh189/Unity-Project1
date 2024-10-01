@@ -36,12 +36,19 @@ public class FollowCam : MonoBehaviour
 
         Vector3 pos = target.position + delta;
 
-        // clamp camera
-        transform.position = new Vector3
-            (
-                Mathf.Clamp(pos.x, cameraBound.bounds.min.x + _halfWidth, cameraBound.bounds.max.x - _halfWidth),
-                Mathf.Clamp(pos.y, cameraBound.bounds.min.y + _halfHeight, cameraBound.bounds.max.y - _halfHeight),
-                pos.z
-            );
+        if (cameraBound != null)
+        {
+            // clamp camera
+            transform.position = new Vector3
+                (
+                    Mathf.Clamp(pos.x, cameraBound.bounds.min.x + _halfWidth, cameraBound.bounds.max.x - _halfWidth),
+                    Mathf.Clamp(pos.y, cameraBound.bounds.min.y + _halfHeight, cameraBound.bounds.max.y - _halfHeight),
+                    pos.z
+                );
+        }
+        else
+        {
+            transform.position = pos;
+        }
     }
 }

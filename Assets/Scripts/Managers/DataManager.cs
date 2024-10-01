@@ -10,10 +10,12 @@ public class DataManager : Singleton<DataManager>
     [SerializeField] List<PlayerSO> listPlayerSO;
     [SerializeField] List<SkillSO> listSkillSO;
     [SerializeField] List<BossSO> listBossSO;
+    [SerializeField] List<StageSO> listStageSO;
 
     Dictionary<int, PlayerSO> playerDict = new Dictionary<int, PlayerSO>();
     Dictionary<int, SkillSO> skillDict = new Dictionary<int, SkillSO>();
     Dictionary<int, BossSO> bossDict = new Dictionary<int, BossSO>();
+    Dictionary<int, StageSO> stageDict = new Dictionary<int, StageSO>();
 
     public Dictionary<int, PlayerSO> PlayerDict
     {
@@ -30,6 +32,11 @@ public class DataManager : Singleton<DataManager>
         get { return bossDict; }
     }
 
+    public Dictionary<int, StageSO> StageDict
+    {
+        get { return stageDict; }
+    }
+
     protected override void Init()
     {
         LoadData();
@@ -40,6 +47,7 @@ public class DataManager : Singleton<DataManager>
         LoadPlayerData();
         LoadSkillData();
         LoadBossData();
+        LoadStageData();
 
         Debug.Log("Data Load Complete");
     }
@@ -71,6 +79,16 @@ public class DataManager : Singleton<DataManager>
         {
             bossData = listBossSO[i];
             bossDict.Add(bossData.ID, bossData);
+        }
+    }
+
+    void LoadStageData()
+    {
+        StageSO stageData;
+        for (int i = 0; i < listStageSO.Count; i++)
+        {
+            stageData = listStageSO[i];
+            stageDict.Add(stageData.ID, stageData);
         }
     }
 }

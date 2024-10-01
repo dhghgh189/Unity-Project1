@@ -44,7 +44,8 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeState(EState state)
     {
-        _curState = state;
+        if (_curState != state)
+            _curState = state;
     }
 
     public void StartGame(int selectIndex)
