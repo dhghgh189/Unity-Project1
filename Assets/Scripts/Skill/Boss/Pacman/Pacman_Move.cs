@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : SkillBase
+public class Pacman_Move : SkillBase
 {
     [SerializeField] float speed;
     [SerializeField] float moveTime;
+    [SerializeField] LayerMask whatIsGround;
+    [SerializeField] float checkDistance;
 
     float _elapsedTime;
 
     Coroutine _moveRoutine;
+
+    float _radius;
+
+    private void Start()
+    {
+        _radius = _owner.Collider.size.x;
+    }
 
     public override void DoSkill()
     {
@@ -25,21 +34,30 @@ public class Move : SkillBase
             _moveRoutine = null;
         }
 
-        _moveRoutine = StartCoroutine(MoveRoutine());
+        _moveRoutine = StartCoroutine(MoveRoutine(toTarget.normalized));
     }
 
-    IEnumerator MoveRoutine()
+    IEnumerator MoveRoutine(Vector2 normalizedDir)
     {
         _elapsedTime = 0;
 
+        //Collider2D collider;
+
         while (true)
         {
-            // test
-            _owner.Rb.velocity = new Vector2(_owner.Direction * speed, _owner.Rb.velocity.y);
+            _owner.Rb.velocity = normalizedDir * speed;
             _elapsedTime += Time.deltaTime;
 
             if (_elapsedTime >= moveTime)
                 break;
+
+            Vector3 offset = Vector2.up * _radius;
+            Debug.DrawRay(_owner.transform.position + offset, normalizedDir * checkDistance, Color.red);
+            if (Physics2D.Raycast(_owner.transform.position + offset, normalizedDir, checkDistance, whatIsGround).collider == null)
+            {
+                Debug.Log("collider null");
+                break;
+            }
 
             yield return null;
         }
@@ -60,6 +78,6 @@ public class Move : SkillBase
 
     public override void StopSkill()
     {
-        
+        _owner.Rb.velocity = Vector2.zero;
     }
 }

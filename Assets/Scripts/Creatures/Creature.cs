@@ -9,8 +9,9 @@ public class Creature : MonoBehaviour
     protected float _hp;
     protected Creature _target;
     protected Rigidbody2D _rb;
-    
+    protected CapsuleCollider2D _collider;
     public Rigidbody2D Rb { get { return _rb; } }
+    public CapsuleCollider2D Collider { get { return _collider; } }
 
     public float HP { get { return _hp; } protected set { _hp = value; OnChangedHP?.Invoke(_hp, _maxHP); } }
     public float MaxHP { get { return _maxHP; } }
@@ -24,6 +25,7 @@ public class Creature : MonoBehaviour
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<CapsuleCollider2D>();
     }
 
     public float Direction 

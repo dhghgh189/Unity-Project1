@@ -11,10 +11,11 @@ public class BossController : Creature
 
     //Rigidbody2D _rb;
     Animator _anim;
-    CapsuleCollider2D _collider;
+    //CapsuleCollider2D _collider;
     SpriteRenderer _sr;
     SkillHandler _skill;
 
+    int _id;
     float _collisionDamage;
 
     float _maxMP;
@@ -28,6 +29,7 @@ public class BossController : Creature
 
     int _currentAnim;
 
+    public int ID { get { return _id; } }
     public float WaitTime { get { return waitTime; } }
     public SkillHandler Skill { get { return _skill; } }
     public override float MaxMP { get { return _maxMP; } }
@@ -41,7 +43,6 @@ public class BossController : Creature
         base.Awake();
 
         _anim = GetComponent<Animator>();
-        _collider = GetComponent<CapsuleCollider2D>();
         _sr = GetComponent<SpriteRenderer>();
         _skill = GetComponent<SkillHandler>();
 
@@ -74,11 +75,18 @@ public class BossController : Creature
             Debug.LogError("Please check data");
         }
 
+        _id = data.ID;
+
         // shape
         _anim.runtimeAnimatorController = data.AnimController;
         _collider.offset = data.ColliderOffset;
         _collider.size = data.ColliderSize;
         _sr.flipX = data.needToFilp;
+
+        if (data.isKinematic)
+        {
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+        }
 
         transform.localScale = data.Scale;
 

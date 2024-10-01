@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7237662459806672065}
   - component: {fileID: -7297775071669955602}
   m_Layer: 0
-  m_Name: Move
+  m_Name: Pacman_Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07073515bb65b8d4e9fb4b73143cc427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   moveTime: 3
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  checkDistance: 50

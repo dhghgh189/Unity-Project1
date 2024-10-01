@@ -17,6 +17,7 @@ public class BossSO : ScriptableObject
     public Vector2 ColliderSize;
     public Sprite Icon;
     public bool needToFilp = false;
+    public bool isKinematic;
 
     [Header("Stats")]
     public float MaxHP;

@@ -21,6 +21,7 @@ MonoBehaviour:
   ColliderSize: {x: 2.010343, y: 2.010343}
   Icon: {fileID: -661809418, guid: 70f37b9611beee34a86dc12ab2c4b94e, type: 3}
   needToFilp: 0
+  isKinematic: 1
   MaxHP: 5000
   MaxMP: 800
   MPGenPerSecond: 5

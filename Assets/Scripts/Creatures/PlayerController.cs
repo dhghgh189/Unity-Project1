@@ -20,7 +20,7 @@ public class PlayerController : Creature
 
     //Rigidbody2D _rb;
     Animator _anim;
-    CapsuleCollider2D _collider;
+    //CapsuleCollider2D _collider;
     PlayerData _data;
     SpriteRenderer _sr;
     SkillHandler _skill;
@@ -39,7 +39,6 @@ public class PlayerController : Creature
         base.Awake();
 
         _anim = GetComponent<Animator>();
-        _collider = GetComponent<CapsuleCollider2D>();
         _sr = GetComponent<SpriteRenderer>();
         _skill = GetComponent<SkillHandler>();
 
