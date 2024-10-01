@@ -29,6 +29,17 @@ public class FollowCam : MonoBehaviour
         this.target = target;
     }
 
+    public void SetBound(GameObject cameraBound)
+    {
+        BoxCollider2D bound = cameraBound.GetComponent<BoxCollider2D>();
+        if (bound == null)
+        {
+            return;
+        }
+
+        this.cameraBound = bound;
+    }
+
     private void LateUpdate()
     {
         if (target == null)
