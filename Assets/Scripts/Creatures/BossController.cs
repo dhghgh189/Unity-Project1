@@ -33,9 +33,10 @@ public class BossController : Creature
 
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 
-    void Awake()
+    protected override void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        base.Awake();
+
         _anim = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider2D>();
         _sr = GetComponent<SpriteRenderer>();

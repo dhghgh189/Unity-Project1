@@ -32,9 +32,10 @@ public class PlayerController : Creature
     public override float MaxMP { get { return _data.MaxMP; } }
     public override float MP { get { return _data.MP; } set { _data.MP = value; } }
 
-    void Awake()
+    protected override void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        base.Awake();
+
         _anim = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider2D>();
         _sr = GetComponent<SpriteRenderer>();

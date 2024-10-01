@@ -21,6 +21,11 @@ public class Creature : MonoBehaviour
     public UnityAction<float, float> OnChangedHP;
     public UnityAction OnDead;
 
+    protected virtual void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
     public float Direction 
     { 
         get 
