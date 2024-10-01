@@ -15,12 +15,12 @@ TagManager:
   - Ground
   - Spring
   - Player
-  - Friendly
-  - Enemy
+  - Projectile
+  - Boss
   - Camera
   - CameraBound
-  - 
-  - 
+  - Hitbox
+  - GroundCollider
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 1012973437
+    locked: 0
+  - name: Boss
+    uniqueID: 3004140173
     locked: 0
   - name: Player
     uniqueID: 344019145

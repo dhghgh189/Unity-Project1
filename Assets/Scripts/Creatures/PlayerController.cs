@@ -16,6 +16,8 @@ public class PlayerController : Creature
 
     [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.PlayerSkill_Max];
 
+    [SerializeField ]Hitbox hitbox;
+
     //Rigidbody2D _rb;
     Animator _anim;
     CapsuleCollider2D _collider;
@@ -52,6 +54,9 @@ public class PlayerController : Creature
         _anim.runtimeAnimatorController = gameData.PlayerData.AnimController;
         _collider.offset = gameData.PlayerData.ColliderOffset;
         _collider.size = gameData.PlayerData.ColliderSize;
+
+        hitbox.Init(_collider.offset, _collider.size);
+
         _sr.flipX = gameData.PlayerData.NeedToFlip;
 
         _data = gameData.PlayerData;

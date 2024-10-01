@@ -46,6 +46,8 @@ public class Move : SkillBase
 
         base.DoSkill();
 
+        StopSkill();
+
         BossController boss = _owner.GetComponent<BossController>();
         if (boss == null)
         {

@@ -52,6 +52,7 @@ public class Fireball : SkillBase
                 yield break;
             }
 
+            fireball.SetOwner(_owner);
             fireball.SetDamage(damage);
 
             // 설정한 발사 각도에 따라 방향 계산

@@ -15,6 +15,8 @@ public class BossController : Creature
     SpriteRenderer _sr;
     SkillHandler _skill;
 
+    float _collisionDamage;
+
     float _maxMP;
     float _mp;
     float _mpGenPerSecond;
@@ -30,6 +32,7 @@ public class BossController : Creature
     public SkillHandler Skill { get { return _skill; } }
     public override float MaxMP { get { return _maxMP; } }
     public override float MP { get { return _mp; } set { _mp = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP); } }
+    public float CollisionDamage { get { return _collisionDamage; } }
 
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 
@@ -90,6 +93,9 @@ public class BossController : Creature
         {
             _skill.AddSkill(useSkillsID[i]);
         }
+
+        // only boss have it
+        _collisionDamage = 0.5f;
 
         // set health
         _maxHP = data.MaxHP;
