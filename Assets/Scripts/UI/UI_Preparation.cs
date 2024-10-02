@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class UI_Preparation : MonoBehaviour
     [SerializeField] UI_UpgradeGroup attackUpgradeGroup;
     [SerializeField] UI_UpgradeGroup hpUpgradeGroup;
     [SerializeField] UI_UpgradeGroup utilUpgradeGroup;
+    [SerializeField] TextMeshProUGUI txtBoss;
 
     private void Awake()
     {
@@ -47,6 +49,10 @@ public class UI_Preparation : MonoBehaviour
         UpdateUpgrade(Enums.EEvents.UpgradeAttackPoint, player.Data.AttackLevel);
         UpdateUpgrade(Enums.EEvents.UpgradeMaxHP, player.Data.HPLevel);
         UpdateUpgrade(Enums.EEvents.UpgradeUtil, player.Data.UtilLevel);
+
+        int iStage = GameManager.Instance.Data.CurrentStageIndex;
+        int bossID = DataManager.Instance.StageDict[iStage].BossID;
+        txtBoss.text = $"{DataManager.Instance.BossDict[bossID].Name}";
     }
 
     public void UpdateUpgrade(Enums.EEvents eEvent, int level)
