@@ -31,6 +31,14 @@ public class BossController : Creature
 
     int _currentAnim;
 
+    [SerializeField] float flashTime;
+
+    [SerializeField] Color flashColor;
+    Color _normalColor;
+
+    WaitForSeconds _flashTime;
+    Coroutine _flashRoutine;
+
     public int ID { get { return _id; } }
     public float WaitTime { get { return waitTime; } }
     public SkillHandler Skill { get { return _skill; } }
@@ -58,6 +66,9 @@ public class BossController : Creature
         _states[(int)_curState].OnEnter();
 
         GameManager.Instance.SetBoss(this);
+
+        _normalColor = _sr.color;
+        _flashTime = new WaitForSeconds(flashTime);
     }
 
     private void Start()
@@ -159,5 +170,27 @@ public class BossController : Creature
         _states[(int)_curState].OnExit();
         _curState = state;
         _states[(int)_curState].OnEnter();
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        if (!_isDead)
+        {
+            if (_flashRoutine == null)
+            {
+                _flashRoutine = StartCoroutine(FlashRoutine());
+            }
+        }
+    }
+
+    IEnumerator FlashRoutine()
+    {
+        _sr.color = flashColor;
+        yield return _flashTime;
+        _sr.color = _normalColor;
+
+        _flashRoutine = null;
     }
 }

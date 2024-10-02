@@ -22,8 +22,8 @@ MonoBehaviour:
   Icon: {fileID: -661809418, guid: 70f37b9611beee34a86dc12ab2c4b94e, type: 3}
   needToFilp: 0
   isKinematic: 1
-  MaxHP: 10
-  MaxMP: 800
+  MaxHP: 100
+  MaxMP: 20
   MPGenPerSecond: 5
   RewardCoinAmount: 60
   useSkillsID: e8030000
