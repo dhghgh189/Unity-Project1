@@ -16,7 +16,12 @@ public class PlayerController : Creature
 
     [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.PlayerSkill_Max];
 
-    [SerializeField ]Hitbox hitbox;
+    [SerializeField] Hitbox hitbox;
+
+    [SerializeField] float invisibleTime;
+
+    Color _normalColor;
+    Color _invisibleColor;
 
     //Rigidbody2D _rb;
     Animator _anim;
@@ -29,6 +34,9 @@ public class PlayerController : Creature
     bool _isGrounded = true;
     bool _tryToJump = false;
     float x;
+
+    WaitForSeconds _invisibleTime;
+    Coroutine _invisibleRoutine;
 
     public PlayerData Data { get { return _data; } }
     public override float MaxMP { get { return _data.MaxMP; } }
@@ -46,6 +54,10 @@ public class PlayerController : Creature
 
         SetData();
         GameManager.Instance.SetPlayer(this);
+
+        _normalColor = _sr.color;
+        _invisibleColor = new Color(_normalColor.r, _normalColor.g, _normalColor.b, 0.5f);
+        _invisibleTime = new WaitForSeconds(invisibleTime);
     }
 
     void SetData()
@@ -264,5 +276,26 @@ public class PlayerController : Creature
     {
         _maxHP = maxHP;
         HP = _maxHP;
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        if (_invisibleRoutine != null)
+            return;
+
+        base.TakeDamage(damage);
+
+        if (!_isDead)
+        {
+            _invisibleRoutine = StartCoroutine(InvisibleRoutine());
+        }
+    }
+
+    IEnumerator InvisibleRoutine()
+    {
+        _sr.color = _invisibleColor;
+        yield return _invisibleTime;
+        _sr.color = _normalColor;
+        _invisibleRoutine = null;
     }
 }

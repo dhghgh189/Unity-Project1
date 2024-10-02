@@ -4411,7 +4411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -179, y: 53}
+  m_AnchoredPosition: {x: -131, y: 53}
   m_SizeDelta: {x: 215, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872036987
@@ -4701,7 +4701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -179, y: 223}
+  m_AnchoredPosition: {x: -131, y: 223}
   m_SizeDelta: {x: 215, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445253101
@@ -6332,7 +6332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -179, y: 138}
+  m_AnchoredPosition: {x: -131, y: 138}
   m_SizeDelta: {x: 215, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7626581837285732148
@@ -7076,6 +7076,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9043922058322579252, guid: 9dcc2010e3db57c449e5c90ac213673b, type: 3}
+      propertyPath: m_Size.x
+      value: 37.007805
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043922058322579252, guid: 9dcc2010e3db57c449e5c90ac213673b, type: 3}
+      propertyPath: m_Offset.x
+      value: 6.9486485
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043922058322579252, guid: 9dcc2010e3db57c449e5c90ac213673b, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.5544472
+      objectReference: {fileID: 0}
     - target: {fileID: 9043922058322579254, guid: 9dcc2010e3db57c449e5c90ac213673b, type: 3}
       propertyPath: m_Name
       value: CameraBound

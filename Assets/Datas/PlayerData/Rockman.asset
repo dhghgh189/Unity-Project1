@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   Name: "\uB85D\uB9E8"
-  Description: "\uC9C1\uAD00\uC801\uC774\uACE0 \uC26C\uC6B4 \uBB3C\uB9AC \uB51C\uB7EC\uC785\uB2C8\uB2E4."
+  Description: "\uC9C1\uAD00\uC801\uC774\uACE0 \uC26C\uC6B4 \uBB3C\uB9AC \uB51C\uB7EC\uC785\uB2C8\uB2E4.\n(\uBBF8
+    \uAD6C\uD604\uB41C \uC0C1\uD0DC\uC785\uB2C8\uB2E4)"
   AnimController: {fileID: 9100000, guid: a3185f03100df0a49b0c2c4f494f4190, type: 2}
   ColliderOffset: {x: 0.003685713, y: 0.5}
   ColliderSize: {x: 0.6255317, y: 1}

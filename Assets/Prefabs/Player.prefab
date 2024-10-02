@@ -199,6 +199,7 @@ MonoBehaviour:
   jumpKey: 122
   skillKeys: 780000006300000073000000
   hitbox: {fileID: 1929206298756260662}
+  invisibleTime: 3
 --- !u!70 &5923191511903317730
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ MonoBehaviour:
   Icon: {fileID: -2028652810, guid: eeff897c24b02e94aac32b9dbe6839fb, type: 3}
   needToFilp: 0
   Attack: 7
-  MaxHP: 0.5
+  MaxHP: 4
   MaxMP: 150
   UtilAmount: 0
   MPGenPerSecond: 10
