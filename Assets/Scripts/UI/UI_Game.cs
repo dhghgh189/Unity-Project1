@@ -38,7 +38,7 @@ public class UI_Game : MonoBehaviour
         boss.OnChangedStat += UpdateChanged;
 
         // init once
-        healthBar.UpdateSliderBar(boss.HP, boss.MaxHP, false);
+        healthBar.UpdateSliderBar(boss.HP, boss.MaxHP, true);
         manaBar.UpdateSliderBar(boss.MP, boss.MaxMP, false);
 
         gameOverPanel.SetActive(false);
