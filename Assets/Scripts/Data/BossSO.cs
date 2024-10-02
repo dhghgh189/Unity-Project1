@@ -25,6 +25,9 @@ public class BossSO : ScriptableObject
     // 초당 마나 젠 양
     public float MPGenPerSecond;
 
+    [Header("Reward")]
+    public int RewardCoinAmount;
+
     [Header("Skills")]
     public List<int> useSkillsID;
 }

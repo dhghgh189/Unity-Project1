@@ -22,6 +22,8 @@ public class BossController : Creature
     float _mp;
     float _mpGenPerSecond;
 
+    int _rewardCoinAmount;
+
     public enum State { Idle, Skill, Wait, Max }
     State _curState;
 
@@ -35,6 +37,7 @@ public class BossController : Creature
     public override float MaxMP { get { return _maxMP; } }
     public override float MP { get { return _mp; } set { _mp = value; OnChangedStat?.Invoke(Enums.EEvents.ChangedMP, _mp, _maxMP); } }
     public float CollisionDamage { get { return _collisionDamage; } }
+    public int RewardCoinAmount { get { return _rewardCoinAmount; } }
 
     public UnityAction<Enums.EEvents, float, float> OnChangedStat;
 
@@ -110,6 +113,9 @@ public class BossController : Creature
         // set health
         _maxHP = data.MaxHP;
         HP = _maxHP;
+
+        // reward
+        _rewardCoinAmount = data.RewardCoinAmount;
     }
 
     void Update()

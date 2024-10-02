@@ -156,6 +156,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StageClear()
     {
+        _data.Coins += Boss.RewardCoinAmount;
         _timer = waitTime;
         ChangeState(EState.StageClear);
     }

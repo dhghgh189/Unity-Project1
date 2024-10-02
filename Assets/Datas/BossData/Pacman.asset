@@ -25,4 +25,5 @@ MonoBehaviour:
   MaxHP: 10
   MaxMP: 800
   MPGenPerSecond: 5
+  RewardCoinAmount: 60
   useSkillsID: e8030000
