@@ -60,7 +60,7 @@ public class UI_Game : MonoBehaviour
     // HP´Â ºÐ¸®
     public void UpdateHP(float hp, float maxHp)
     {
-        healthBar.UpdateSliderBar(hp, maxHp, false);
+        healthBar.UpdateSliderBar(hp, maxHp, true);
     }
 
     public void OnClickedBtnTitle()

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fireball : SkillBase
 {
-    [SerializeField] float damage;
     [SerializeField] float speed;
     [SerializeField] Projectile fireballPrefab;
     [SerializeField] float fireAngle;
@@ -53,7 +52,7 @@ public class Fireball : SkillBase
             }
 
             fireball.SetOwner(_owner);
-            fireball.SetDamage(damage);
+            fireball.SetDamage(_damage);
 
             // 설정한 발사 각도에 따라 방향 계산
             Vector2 dir = new Vector2(Mathf.Cos(fireAngle * Mathf.Deg2Rad), Mathf.Sin(fireAngle * Mathf.Deg2Rad));

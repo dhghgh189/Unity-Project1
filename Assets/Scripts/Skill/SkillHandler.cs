@@ -17,6 +17,52 @@ public class SkillHandler : MonoBehaviour
     public void SetOwner(Creature owner)
     {
         _owner = owner;
+        if (_owner is PlayerController)
+        {
+            GameManager.Instance.Data.PlayerData.OnUpgradeStat += UpdateStat;
+        }
+    }
+
+    public void UpdateStat(Enums.EEvents eEvent, int level)
+    {
+        PlayerController player = _owner as PlayerController;
+        if (player == null)
+        {
+            Debug.LogError("SkillHandler Owner type mismatch!");
+            return;
+        }
+
+        switch (eEvent)
+        {
+            case Enums.EEvents.UpgradeAttackPoint:
+                {
+                    float attackPercent = player.Data.Attack / 100f;
+                    for (int i = 0; i < _skills.Count; i++)
+                    {
+                        if (_skills[i].BaseDamage > 0)
+                        {
+                            _skills[i].Damage = _skills[i].BaseDamage + (_skills[i].BaseDamage * attackPercent);
+                        }                       
+                    }
+                }
+                break;
+            case Enums.EEvents.UpgradeUtil:
+                {
+                    float utilPercent = player.Data.UtilAmount / 100f;
+                    for (int i = 0; i < _skills.Count; i++)
+                    {
+                        if (_skills[i].BaseCoolTime - (_skills[i].BaseCoolTime * utilPercent) < _skills[i].MinCoolTime)
+                        {
+                            _skills[i].CoolTime = _skills[i].MinCoolTime;
+                        }
+                        else
+                        {
+                            _skills[i].CoolTime = _skills[i].BaseCoolTime - (_skills[i].BaseCoolTime * utilPercent);
+                        }
+                    }
+                }
+                break;
+        }
     }
 
     public void AddSkill(int skillID)
@@ -93,5 +139,13 @@ public class SkillHandler : MonoBehaviour
             return;
 
         _skills[(int)slot].StopSkill();
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.Data.PlayerData.OnUpgradeStat -= UpdateStat;
+        }
     }
 }

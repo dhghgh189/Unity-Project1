@@ -19,6 +19,9 @@ MonoBehaviour:
     \n\uACF5\uACA9\uD0A4\uB97C \uB204\uB974\uACE0 \uC788\uB2E4\uAC00 \uB5BC\uBA74
     \uCC28\uC9C0\uC0F7\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   Slot: 0
-  CoolTime: 0.5
+  CoolTime: 0.1
+  MinCoolTime: 0.1
+  MPAmount: 0
   Icon: {fileID: 1458134686, guid: 10692b303d6412e4b8158bb0e1b8bfa9, type: 3}
   Prefab: {fileID: 8412381834396381607, guid: b7a877bbd6f3d7144b91822cabf2e845, type: 3}
+  Damage: 8

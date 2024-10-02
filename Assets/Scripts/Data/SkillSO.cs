@@ -11,8 +11,12 @@ public class SkillSO : ScriptableObject
     [TextArea(1, 5)] public string Description;
     public Enums.ESkillSlot Slot;
     public float CoolTime;
+    public float MinCoolTime;
     // 소비 마나
     public float MPAmount;
     public Sprite Icon;
     public SkillBase Prefab;
+
+    [Header("Common Stat")]
+    public float Damage;
 }

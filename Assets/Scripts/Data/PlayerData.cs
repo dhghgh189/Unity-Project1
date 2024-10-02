@@ -59,8 +59,10 @@ public class PlayerData
 
             // calc attack power (percent)
             // current attack * (current attack level * percent per level)
-            float attackIncrease = _attack * (_attackLevel * (Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount / 100f));
-            _attack += attackIncrease;
+            //float attackIncrease = _attack * (_attackLevel * (Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount / 100f));
+            //_attack += attackIncrease;
+
+            _attack += Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount;
 
             OnUpgradeStat?.Invoke(Enums.EEvents.UpgradeAttackPoint, _attackLevel);
         }
@@ -153,12 +155,12 @@ public class PlayerData
         _needToFlip = data.needToFilp;
 
         // stat
-        _attack = data.Attack;
+        _attack = 0;
         _maxHP = data.MaxHP;
         _maxMP = data.MaxMP;
         _mp = _maxMP;
         _mpGenPerSecond = data.MPGenPerSecond;
-        _utilAmount = data.UtilAmount;
+        _utilAmount = 0;
 
         return true;
     }

@@ -17,5 +17,8 @@ MonoBehaviour:
   Description: "\uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C\uB85C \uC774\uB3D9\uD569\uB2C8\uB2E4."
   Slot: 4
   CoolTime: 0.1
+  MinCoolTime: 0.1
+  MPAmount: 0
   Icon: {fileID: 1389717538, guid: 70f37b9611beee34a86dc12ab2c4b94e, type: 3}
   Prefab: {fileID: -7297775071669955602, guid: 1e1bfafb0de1fc84db83d5ab9b9be957, type: 3}
+  Damage: 0

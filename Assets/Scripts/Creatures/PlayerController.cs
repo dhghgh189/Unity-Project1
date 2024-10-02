@@ -34,6 +34,8 @@ public class PlayerController : Creature
     public override float MaxMP { get { return _data.MaxMP; } }
     public override float MP { get { return _data.MP; } set { _data.MP = value; } }
 
+    public SkillHandler Skill { get { return _skill; } }
+
     protected override void Awake()
     {
         base.Awake();
@@ -68,6 +70,10 @@ public class PlayerController : Creature
         {
             _skill.AddSkill(useSkillsID[i]);
         }
+
+        // init upgrade stat
+        _skill.UpdateStat(Enums.EEvents.UpgradeAttackPoint, _data.AttackLevel);
+        _skill.UpdateStat(Enums.EEvents.UpgradeUtil, _data.UtilLevel);
 
         // set health
         _maxHP = _data.MaxHP;
