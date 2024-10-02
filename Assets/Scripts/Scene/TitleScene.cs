@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleScene : MonoBehaviour
 {
+    void Start()
+    {
+        GameManager.Instance.ChangeState(GameManager.EState.Init);
+    }
+
     void Update()
     {
         if (Input.anyKeyDown)

@@ -43,6 +43,7 @@ public class PlayerController : Creature
         _skill = GetComponent<SkillHandler>();
 
         SetData();
+        GameManager.Instance.SetPlayer(this);
     }
 
     void SetData()

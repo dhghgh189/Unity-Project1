@@ -22,7 +22,7 @@ MonoBehaviour:
   Icon: {fileID: -661809418, guid: 70f37b9611beee34a86dc12ab2c4b94e, type: 3}
   needToFilp: 0
   isKinematic: 1
-  MaxHP: 5000
+  MaxHP: 10
   MaxMP: 800
   MPGenPerSecond: 5
   useSkillsID: e8030000

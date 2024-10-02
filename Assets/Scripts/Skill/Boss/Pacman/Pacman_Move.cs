@@ -53,7 +53,6 @@ public class Pacman_Move : SkillBase
             Debug.DrawRay(_owner.transform.position + offset, normalizedDir * checkDistance, Color.red);
             if (Physics2D.Raycast(_owner.transform.position + offset, normalizedDir, checkDistance, whatIsGround).collider == null)
             {
-                Debug.Log("collider null");
                 break;
             }
 

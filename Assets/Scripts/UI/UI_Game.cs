@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Game : MonoBehaviour
@@ -10,14 +11,18 @@ public class UI_Game : MonoBehaviour
     [SerializeField] Image imgBossIcon;
     [SerializeField] UI_SliderBar healthBar;
     [SerializeField] UI_SliderBar manaBar;
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject gameClearPanel;
 
     void Start()
     {
-        GameObject go = GameObject.FindGameObjectWithTag("Boss");
-        if (go == null)
-            return;          
+        PlayerController player = GameManager.Instance.Player;
+        if (player == null)
+            return;
 
-        BossController boss = go.GetComponent<BossController>();
+        player.OnDead += ShowGameOverPanel;
+
+        BossController boss = GameManager.Instance.Boss;
         if (boss == null)
             return;
 
@@ -28,12 +33,16 @@ public class UI_Game : MonoBehaviour
             imgBossIcon.rectTransform.localScale = new Vector3(-1, imgBossIcon.rectTransform.localScale.y, imgBossIcon.rectTransform.localScale.z);
         }
 
+        boss.OnDead += ShowGameClearPanel;
         boss.OnChangedHP += UpdateHP;
         boss.OnChangedStat += UpdateChanged;
 
         // init once
         healthBar.UpdateSliderBar(boss.HP, boss.MaxHP, false);
         manaBar.UpdateSliderBar(boss.MP, boss.MaxMP, false);
+
+        gameOverPanel.SetActive(false);
+        gameClearPanel.SetActive(false);
     }
 
     public void UpdateChanged(Enums.EEvents eEvent, float current, float max)
@@ -54,13 +63,50 @@ public class UI_Game : MonoBehaviour
         healthBar.UpdateSliderBar(hp, maxHp, false);
     }
 
+    public void OnClickedBtnTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void OnClickedBtnQuit()
+    {
+        Application.Quit();
+    }
+
+    public void ShowGameClearPanel()
+    {
+        gameClearPanel.SetActive(true);
+    }
+
+    public void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+    }
+
     private void OnDisable()
     {
-        BossController boss = FindObjectOfType<BossController>();
-        if (boss != null)
+        //BossController boss = FindObjectOfType<BossController>();
+        //if (boss != null)
+        //{
+        //    boss.OnChangedHP -= UpdateHP;
+        //    boss.OnChangedStat -= UpdateChanged;
+        //}
+
+        if (GameManager.Instance != null)
         {
-            boss.OnChangedHP -= UpdateHP;
-            boss.OnChangedStat -= UpdateChanged;
+            PlayerController player = GameManager.Instance.Player;
+            if (player != null)
+            {
+                player.OnDead -= ShowGameOverPanel;
+            }
+
+            BossController boss = GameManager.Instance.Boss;
+            if (boss != null)
+            {
+                boss.OnDead -= ShowGameClearPanel;
+                boss.OnChangedHP -= UpdateHP;
+                boss.OnChangedStat -= UpdateChanged;
+            }
         }
     }
 }

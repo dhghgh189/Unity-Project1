@@ -53,6 +53,8 @@ public class BossController : Creature
         // State Init
         _curState = State.Wait;
         _states[(int)_curState].OnEnter();
+
+        GameManager.Instance.SetBoss(this);
     }
 
     private void Start()

@@ -37,11 +37,7 @@ public class UI_Preparation : MonoBehaviour
 
     private void Start()
     {
-        GameObject go = GameObject.FindGameObjectWithTag("Player");
-        if (go == null)
-            return;
-
-        PlayerController player = go.GetComponent<PlayerController>();
+        PlayerController player = GameManager.Instance.Player;
         if (player == null)
             return;
 
