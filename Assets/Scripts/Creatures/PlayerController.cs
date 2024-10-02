@@ -108,6 +108,9 @@ public class PlayerController : Creature
 
     void Update()
     {
+        if (GameManager.Instance.CurState != GameManager.EState.InGame && GameManager.Instance.CurState != GameManager.EState.StageClear)
+            return;
+
         // check ground
         GroundCheck();
 
