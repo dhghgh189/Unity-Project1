@@ -7,7 +7,7 @@ public class UI_Clear : MonoBehaviour
 {
     public void OnClickedBtnTitle()
     {
-        SceneManager.LoadScene("Title");
+        ExSceneManager.Instance.LoadScene("Title");
     }
 
     public void OnClickedBtnQuit()

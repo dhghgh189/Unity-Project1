@@ -18,7 +18,6 @@ public class GameScene : MonoBehaviour
         _map = Instantiate(_stageData.MapPrefab);
     }
 
-    // test
     private void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -44,14 +43,5 @@ public class GameScene : MonoBehaviour
 
         boss.transform.position = _stageData.BossPos;
         boss.SetInfo(_stageData.BossID);
-    }
-
-    // test
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            SceneManager.LoadScene("Preparation");
-        }
     }
 }

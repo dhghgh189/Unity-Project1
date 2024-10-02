@@ -107,7 +107,7 @@ public class GameManager : Singleton<GameManager>
 
         _data.PlayerData = playerData;
 
-        SceneManager.LoadScene("Preparation");
+        ExSceneManager.Instance.LoadScene("Preparation");
     }
 
     void UpdateInGame()
@@ -130,12 +130,12 @@ public class GameManager : Singleton<GameManager>
             {
                 _data.CurrentStageIndex++;
                 ChangeState(EState.InGame);
-                SceneManager.LoadScene("Preparation");
+                ExSceneManager.Instance.LoadScene("Preparation");
             }
             else
             {
                 ChangeState(EState.Idle);
-                SceneManager.LoadScene("Clear");
+                ExSceneManager.Instance.LoadScene("Clear");
             }
         }
     }
@@ -183,5 +183,17 @@ public class GameManager : Singleton<GameManager>
     public void Clear()
     {
         Time.timeScale = 1;
+
+        if (_player != null)
+        {
+            _player.OnDead -= GameOver;
+            _player = null;
+        }
+
+        if (_boss != null)
+        {
+            _boss.OnDead -= StageClear;
+            _boss = null;
+        }
     }
 }

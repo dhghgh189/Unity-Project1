@@ -46,8 +46,9 @@ public class Projectile : MonoBehaviour
 
         yield return _destroyTime;
 
-        // 풀링 필요
-        Destroy(gameObject);
+        // pooling
+        if (PoolManager.Instance.Push(gameObject) == false)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -57,8 +58,9 @@ public class Projectile : MonoBehaviour
         {
             creature.TakeDamage(_damage);
 
-            // 풀링 필요
-            Destroy(gameObject);
+            // pooling
+            if (PoolManager.Instance.Push(gameObject) == false)
+                Destroy(gameObject);
         }
     }
 }

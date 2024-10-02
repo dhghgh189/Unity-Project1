@@ -14,7 +14,7 @@ public class TitleScene : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene("Select");
+            ExSceneManager.Instance.LoadScene("Select");
         }
     }
 }

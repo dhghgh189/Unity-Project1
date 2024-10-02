@@ -100,7 +100,7 @@ public class UI_Preparation : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        ExSceneManager.Instance.LoadScene("Game");
     }
 
     private void OnDisable()

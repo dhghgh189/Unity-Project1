@@ -65,7 +65,7 @@ public class UI_Game : MonoBehaviour
 
     public void OnClickedBtnTitle()
     {
-        SceneManager.LoadScene("Title");
+        ExSceneManager.Instance.LoadScene("Title");
     }
 
     public void OnClickedBtnQuit()

@@ -6,9 +6,18 @@ public class Fireball : SkillBase
 {
     [SerializeField] float speed;
     [SerializeField] Projectile fireballPrefab;
+    [SerializeField] int poolSize;
     [SerializeField] float fireAngle;
 
     Coroutine _fireRoutine;
+
+    public override void SetData(SkillSO data, Creature owner)
+    {
+        base.SetData(data, owner);
+
+        // pooling
+        PoolManager.Instance.CreatePool(fireballPrefab.gameObject, poolSize);
+    }
 
     public override void DoSkill()
     {
@@ -43,8 +52,8 @@ public class Fireball : SkillBase
                 continue;
             }
 
-            // 풀링 적용 필요
-            Projectile fireball = Instantiate(fireballPrefab);
+            // pooling
+            Projectile fireball = PoolManager.Instance.Pop<Projectile>(fireballPrefab.gameObject);
             if (fireball == null)
             {
                 Debug.LogError($"{name} DoSkill Error!");

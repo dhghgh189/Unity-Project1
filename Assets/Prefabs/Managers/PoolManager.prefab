@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7237662459806672064
+--- !u!1 &5803589955235981969
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7237662459806672065}
-  - component: {fileID: 19461319432194176}
+  - component: {fileID: 5803589955235981974}
+  - component: {fileID: 5803589955235981975}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: PoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7237662459806672065
+--- !u!4 &5803589955235981974
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7237662459806672064}
+  m_GameObject: {fileID: 5803589955235981969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,19 +32,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &19461319432194176
+--- !u!114 &5803589955235981975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7237662459806672064}
+  m_GameObject: {fileID: 5803589955235981969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f567c64112ee0d540a66fa8bf0599658, type: 3}
+  m_Script: {fileID: 11500000, guid: ea99c8b3c1d8bc54fbb77f7913f35b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
-  fireballPrefab: {fileID: 7909104948601120148, guid: 3f9becd6ad437494191a4766eb7ba7a1, type: 3}
-  poolSize: 20
-  fireAngle: 20
+  defaultPoolSize: 20
