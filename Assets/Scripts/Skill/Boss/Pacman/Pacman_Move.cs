@@ -41,8 +41,6 @@ public class Pacman_Move : SkillBase
     {
         _elapsedTime = 0;
 
-        //Collider2D collider;
-
         while (true)
         {
             _owner.Rb.velocity = normalizedDir * speed;

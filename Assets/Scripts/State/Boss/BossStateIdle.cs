@@ -22,10 +22,12 @@ public class BossStateIdle : BossState
         // 마나가 모두 찼으면 궁극기를 시전
         if (_owner.MP >= _owner.MaxMP)
         {
+            Debug.Log("Ultimate Skill!");
             skill = _owner.Skill.Ultimate;
             // 예외처리
             if (skill == null)
             {
+                Debug.Log("Ultimate skill is null");
                 _owner.MP = 0;
                 return;
             }

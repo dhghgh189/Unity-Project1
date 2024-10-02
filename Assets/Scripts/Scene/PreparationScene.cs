@@ -26,13 +26,4 @@ public class PreparationScene : MonoBehaviour
 
         GameManager.Instance.ChangeState(GameManager.EState.InGame);
     }
-
-    // test
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            SceneManager.LoadScene("Game");
-        }
-    }
 }

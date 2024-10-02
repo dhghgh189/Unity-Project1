@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Preparation : MonoBehaviour
@@ -99,6 +100,11 @@ public class UI_Preparation : MonoBehaviour
     {
         PlayerController player = FindObjectOfType<PlayerController>();
         player?.UpgradeStat(type);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 
     private void OnDisable()
