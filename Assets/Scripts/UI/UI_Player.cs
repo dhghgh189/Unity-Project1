@@ -11,6 +11,7 @@ public class UI_Player : MonoBehaviour
     [SerializeField] UI_SliderBar healthBar;
     [SerializeField] UI_SliderBar manaBar;
     [SerializeField] TextMeshProUGUI txtCoins;
+    [SerializeField] UI_Skill[] skillUI;
 
     void Start()
     {
@@ -33,6 +34,19 @@ public class UI_Player : MonoBehaviour
         healthBar.UpdateSliderBar(player.HP, player.Data.MaxHP, true);
         manaBar.UpdateSliderBar(player.Data.MP, player.Data.MaxMP, false);
         txtCoins.text = $"{GameManager.Instance.Data.Coins}";
+
+        for (int i = 0; i < skillUI.Length; i++)
+        {
+            if (i < player.Skill.AllSkills.Count)
+            {
+                skillUI[i].gameObject.SetActive(true);
+                skillUI[i].SetInfo(player.Skill.AllSkills[i].ID, i);
+            }
+            else
+            {
+                skillUI[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     public void UpdateChanged(Enums.EEvents eEvent, float current, float max)

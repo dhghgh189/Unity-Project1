@@ -39,6 +39,7 @@ public class PlayerController : Creature
     Coroutine _invisibleRoutine;
 
     public PlayerData Data { get { return _data; } }
+    public KeyCode[] SkillKeys { get { return skillKeys; } }
     public override float MaxMP { get { return _data.MaxMP; } }
     public override float MP { get { return _data.MP; } set { _data.MP = value; } }
 

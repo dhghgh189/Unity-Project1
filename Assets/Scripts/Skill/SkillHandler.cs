@@ -12,6 +12,7 @@ public class SkillHandler : MonoBehaviour
     // 보스 전용
     SkillBase _ultimate;
 
+    public List<SkillBase> AllSkills { get { return _skills; } }
     public SkillBase Ultimate { get { return _ultimate; } }
 
     public void SetOwner(Creature owner)

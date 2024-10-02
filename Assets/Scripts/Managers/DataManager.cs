@@ -58,6 +58,14 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < listPlayerSO.Count; i++)
         {
             playerData = listPlayerSO[i];
+            if (playerDict.ContainsKey(playerData.ID))
+            {
+                Debug.LogError($"Player ID duplicate! / ID : {playerData.ID}");
+                Debug.LogError($"old value : {playerDict[playerData.ID].Name}");
+                Debug.LogError($"new value : {playerData.Name}");
+                Debug.LogError("Please Check Data!");
+                return;
+            }
             playerDict.Add(playerData.ID, playerData);
         }
     }
@@ -68,6 +76,14 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < listSkillSO.Count; i++)
         {
             skillData = listSkillSO[i];
+            if (skillDict.ContainsKey(skillData.ID))
+            {
+                Debug.LogError($"Skill ID duplicate! / ID : {skillData.ID}");
+                Debug.LogError($"old value : {skillDict[skillData.ID].Name}");
+                Debug.LogError($"new value : {skillData.Name}");
+                Debug.LogError("Please Check Data!");
+                return;
+            }
             skillDict.Add(skillData.ID, skillData);
         }
     }
@@ -78,6 +94,14 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < listBossSO.Count; i++)
         {
             bossData = listBossSO[i];
+            if (bossDict.ContainsKey(bossData.ID))
+            {
+                Debug.LogError($"Boss ID duplicate! / ID : {bossData.ID}");
+                Debug.LogError($"old value : {bossDict[bossData.ID].Name}");
+                Debug.LogError($"new value : {bossData.Name}");
+                Debug.LogError("Please Check Data!");
+                return;
+            }
             bossDict.Add(bossData.ID, bossData);
         }
     }
@@ -88,6 +112,12 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < listStageSO.Count; i++)
         {
             stageData = listStageSO[i];
+            if (stageDict.ContainsKey(stageData.ID))
+            {
+                Debug.LogError($"Stage ID duplicate! / ID : {stageData.ID}");
+                Debug.LogError("Please Check Data!");
+                return;
+            }
             stageDict.Add(stageData.ID, stageData);
         }
     }
