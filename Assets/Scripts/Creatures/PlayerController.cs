@@ -199,7 +199,7 @@ public class PlayerController : Creature
             {
                 checkAnim = DefineAnim.HASH_JUMP;
             }
-            else if (_rb.velocity.y < Mathf.Epsilon)
+            else 
             {
                 checkAnim = DefineAnim.HASH_FALL;
             }
