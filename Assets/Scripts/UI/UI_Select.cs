@@ -56,6 +56,7 @@ public class UI_Select : MonoBehaviour
         {
             rectTransform = listCharacterUI[i].GetComponent<RectTransform>();
 
+            #region 주석
             // set x,y
             // x = offset.x + ((characterUISize.x + characterUISpacing.x) * (i % xCount))
             // x example :
@@ -69,6 +70,7 @@ public class UI_Select : MonoBehaviour
             //      -(60 + ((100 + 10) * (1 / 6))) = -60
             //      ~~
             //      -(60 + ((100 + 10) * (6 / 6))) = -170
+            #endregion
             rectTransform.anchoredPosition = new Vector2
                 (
                     offset.x + ((characterUISize.x + characterUISpacing.x) * (i % xCount)), 
@@ -104,6 +106,7 @@ public class UI_Select : MonoBehaviour
             $"<color=yellow>이름 :</color> {playerData.name}\n<color=yellow>최대 체력 :</color> {playerData.MaxHP}\n{playerData.Description}";   
     }
 
+    // 게임 시작 버튼 클릭
     public void OnClickBtnSelect()
     {
         GameManager.Instance.StartGame(_selectedCharacterID);

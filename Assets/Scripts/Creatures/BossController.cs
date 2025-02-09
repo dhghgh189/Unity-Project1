@@ -112,6 +112,8 @@ public class BossController : Creature
 
         _skill.SetOwner(this);
 
+        // 보스가 가지는 스킬의 ID를 통해 스킬 추가
+        // DataManager에 접근하여 보스 데이터에서 useSkillID를 얻어온다.
         List<int> useSkillsID = data.useSkillsID;
         for (int i = 0; i < useSkillsID.Count; i++)
         {

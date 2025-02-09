@@ -14,7 +14,7 @@ public class PlayerController : Creature
     [SerializeField] float jumpPower;
     [SerializeField] KeyCode jumpKey;
 
-    [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.PlayerSkill_Max];
+    [SerializeField] KeyCode[] skillKeys = new KeyCode[(int)Enums.ESkillSlot.PlayerSkillLength];
 
     [SerializeField] Hitbox hitbox;
 
@@ -63,6 +63,7 @@ public class PlayerController : Creature
 
     void SetData()
     {
+        // 게임 오버 전 까지 유지되는 게임 데이터
         GameData gameData = GameManager.Instance.Data;
 
         // shape
@@ -78,6 +79,8 @@ public class PlayerController : Creature
 
         _skill.SetOwner(this);
 
+        // 플레이어가 가지는 스킬의 ID를 통해 스킬 추가
+        // DataManager에 접근하여 플레이어 데이터에서 useSkillID를 얻어온다.
         List<int> useSkillsID = DataManager.Instance.PlayerDict[_data.ID].useSkillsID;
         for (int i = 0; i < useSkillsID.Count; i++)
         {
@@ -170,6 +173,9 @@ public class PlayerController : Creature
     {
         RaycastHit2D leftHit = Physics2D.Raycast(leftFeet.position, Vector2.down, 0.1f, whatIsGround);
         RaycastHit2D rightHit = Physics2D.Raycast(rightFeet.position, Vector2.down, 0.1f, whatIsGround);
+
+        Debug.DrawRay(leftFeet.position, Vector2.down * 0.1f, Color.red);
+        Debug.DrawRay(rightFeet.position, Vector2.down * 0.1f, Color.red);
 
         // execute 2 raycast from real feet position
         // (for fix corner problem)

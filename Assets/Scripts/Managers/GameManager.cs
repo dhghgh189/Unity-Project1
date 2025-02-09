@@ -107,6 +107,7 @@ public class GameManager : Singleton<GameManager>
 
         _data.PlayerData = playerData;
 
+        // 대기실로 이동
         ExSceneManager.Instance.LoadScene("Preparation");
     }
 

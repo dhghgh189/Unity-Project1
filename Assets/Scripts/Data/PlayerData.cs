@@ -57,10 +57,12 @@ public class PlayerData
         {
             _attackLevel++;
 
+            #region ¡÷ºÆ
             // calc attack power (percent)
             // current attack * (current attack level * percent per level)
             //float attackIncrease = _attack * (_attackLevel * (Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount / 100f));
             //_attack += attackIncrease;
+            #endregion
 
             _attack += Define.upgradeInfos[(int)Enums.EUpgradeType.AttackPoint].amount;
 

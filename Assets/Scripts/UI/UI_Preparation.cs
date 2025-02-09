@@ -28,6 +28,7 @@ public class UI_Preparation : MonoBehaviour
         cheatButton.SetActive(false);
 #endif
 
+        // Upgrade Group의 버튼을 누르는 경우 Upgrade 함수가 호출된다.
         attackUpgradeGroup.OnClickUpgrade += Upgrade;
         hpUpgradeGroup.OnClickUpgrade += Upgrade;
         utilUpgradeGroup.OnClickUpgrade += Upgrade;
@@ -43,6 +44,7 @@ public class UI_Preparation : MonoBehaviour
         if (player == null)
             return;
 
+        // 업그레이드에 성공하면 UI를 갱신한다.
         GameManager.Instance.Data.PlayerData.OnUpgradeStat += UpdateUpgrade;
 
         // init once
@@ -57,6 +59,7 @@ public class UI_Preparation : MonoBehaviour
 
     public void UpdateUpgrade(Enums.EEvents eEvent, int level)
     {
+        // enum을 통해 어떤 항목이 갱신되어야 하는지 체크
         switch (eEvent)
         {
             case Enums.EEvents.UpgradeAttackPoint:

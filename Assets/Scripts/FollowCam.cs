@@ -45,6 +45,7 @@ public class FollowCam : MonoBehaviour
         if (target == null)
             return;
 
+        // target위치에서 delta만큼 떨어진 위치로 이동
         Vector3 pos = target.position + delta;
 
         if (cameraBound != null)
