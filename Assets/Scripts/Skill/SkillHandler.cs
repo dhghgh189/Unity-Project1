@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class SkillHandler : MonoBehaviour
 {
-    //SkillBase[] _skills = new SkillBase[(int)Enums.ESkillSlot.Max];
-    List<SkillBase> _skills = new List<SkillBase>();
+    // 전체 스킬 저장
+    List<SkillBase> _allSkills = new List<SkillBase>();
     Creature _owner;
+
+    // 플레이어 전용
+    SkillBase[] _playerSkills = new SkillBase[(int)Enums.ESkillSlot.PlayerSkillLength];
 
     // 보스 전용
     SkillBase _ultimate;
 
-    public List<SkillBase> AllSkills { get { return _skills; } }
+    public List<SkillBase> AllSkills { get { return _allSkills; } }
     public SkillBase Ultimate { get { return _ultimate; } }
 
     public void SetOwner(Creature owner)
@@ -38,11 +41,11 @@ public class SkillHandler : MonoBehaviour
             case Enums.EEvents.UpgradeAttackPoint:
                 {
                     float attackPercent = player.Data.Attack / 100f;
-                    for (int i = 0; i < _skills.Count; i++)
+                    for (int i = 0; i < _allSkills.Count; i++)
                     {
-                        if (_skills[i].BaseDamage > 0)
+                        if (_allSkills[i].BaseDamage > 0)
                         {
-                            _skills[i].Damage = _skills[i].BaseDamage + (_skills[i].BaseDamage * attackPercent);
+                            _allSkills[i].Damage = _allSkills[i].BaseDamage + (_allSkills[i].BaseDamage * attackPercent);
                         }                       
                     }
                 }
@@ -50,15 +53,15 @@ public class SkillHandler : MonoBehaviour
             case Enums.EEvents.UpgradeUtil:
                 {
                     float utilPercent = player.Data.UtilAmount / 100f;
-                    for (int i = 0; i < _skills.Count; i++)
+                    for (int i = 0; i < _allSkills.Count; i++)
                     {
-                        if (_skills[i].BaseCoolTime - (_skills[i].BaseCoolTime * utilPercent) < _skills[i].MinCoolTime)
+                        if (_allSkills[i].BaseCoolTime - (_allSkills[i].BaseCoolTime * utilPercent) < _allSkills[i].MinCoolTime)
                         {
-                            _skills[i].CoolTime = _skills[i].MinCoolTime;
+                            _allSkills[i].CoolTime = _allSkills[i].MinCoolTime;
                         }
                         else
                         {
-                            _skills[i].CoolTime = _skills[i].BaseCoolTime - (_skills[i].BaseCoolTime * utilPercent);
+                            _allSkills[i].CoolTime = _allSkills[i].BaseCoolTime - (_allSkills[i].BaseCoolTime * utilPercent);
                         }
                     }
                 }
@@ -76,12 +79,12 @@ public class SkillHandler : MonoBehaviour
             return;
         }
 
-        // 중복 검사
-        //if (_skills[(int)data.Slot] != null)
-        if (_skills.Count > (int)data.Slot && _skills[(int)data.Slot] != null)
+        // 플레이어 스킬 슬롯 중복 검사
+        if (data.Slot < Enums.ESkillSlot.PlayerSkillLength &&
+            _playerSkills[(int)data.Slot] != null)
         {
-            Debug.LogWarning($"{data.Slot} is not null! / ID : {skillID}");
-            Debug.Log($"skills[{(int)data.Slot}].ID : {_skills[(int)data.Slot].ID}");
+            Debug.LogWarning($"{data.Slot} is Duplicated! / Add ID : {skillID}");
+            Debug.Log($"skills[{(int)data.Slot}].ID : {_allSkills[(int)data.Slot].ID}");
             return;
         }
 
@@ -96,50 +99,58 @@ public class SkillHandler : MonoBehaviour
         skill.transform.SetParent(gameObject.transform);
 
         // 스킬 추가
-        //_skills[(int)data.Slot] = skill;
-        if (data.Slot == Enums.ESkillSlot.BossUltimate)
-            _ultimate = skill;
-        else
-            _skills.Add(skill);
+        switch (data.Slot)
+        {
+            case Enums.ESkillSlot.BossUltimate:
+                _ultimate = skill;
+                break;
+            case Enums.ESkillSlot.PlayerSkill1:
+            case Enums.ESkillSlot.PlayerSkill2:
+            case Enums.ESkillSlot.PlayerSkill3:
+                _playerSkills[(int)data.Slot] = skill;
+                break;
+        }
+
+        // 전체 스킬 목록에 추가
+        _allSkills.Add(skill);
     }
 
     public SkillBase GetRandomSkill()
     {
-        if (_skills.Count <= 0)
+        if (_allSkills.Count <= 0)
             return null;
 
-        int index = Random.Range(0, _skills.Count);
-        return _skills[index];
+        int index = Random.Range(0, _allSkills.Count);
+        return _allSkills[index];
     }
 
+    // 플레이어의 스킬 사용 함수
     public void DoSkill(Enums.ESkillSlot slot)
     {
-        //if (_skills[(int)slot] == null)
-        //    return;
-
         // 슬롯에 스킬이 존재하는지 비교
-        if (_skills.Count <= (int)slot)
+        if (_playerSkills[(int)slot] == null)
+        {
+            Debug.Log($"{slot} is null!");
             return;
+        }
 
-        if (_skills[(int)slot].CurrentCoolTime > 0)
+        if (_playerSkills[(int)slot].CurrentCoolTime > 0)
             return;
 
         // 스킬사용에 필요한 마나가 부족한 경우
-        if (_owner.MP < _skills[(int)slot].MPAmount)
+        if (_owner.MP < _playerSkills[(int)slot].MPAmount)
             return;
 
-        _skills[(int)slot].DoSkill();
+        _playerSkills[(int)slot].DoSkill();
     }
 
+    // 플레이어 스킬 중지 함수
     public void StopSkill(Enums.ESkillSlot slot)
     {
-        //if (_skills[(int)slot] == null)
-        //    return;
-
-        if (_skills.Count <= (int)slot)
+        if (_playerSkills[(int)slot] == null)
             return;
 
-        _skills[(int)slot].StopSkill();
+        _playerSkills[(int)slot].StopSkill();
     }
 
     private void OnDisable()

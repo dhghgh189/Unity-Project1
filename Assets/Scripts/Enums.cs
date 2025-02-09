@@ -30,7 +30,7 @@ public static class Enums
         PlayerSkill1,
         PlayerSkill2,
         PlayerSkill3,
-        PlayerSkill_Max,
+        PlayerSkillLength,
 
         BossSkill,
         BossUltimate

@@ -15,6 +15,7 @@ public class SkillBase : MonoBehaviour
     protected float _damage;
     protected Sprite _icon;
     protected Creature _owner;
+    protected Enums.ESkillSlot _slot;
 
     // base stat
     private float _baseCoolTime;
@@ -31,6 +32,7 @@ public class SkillBase : MonoBehaviour
     public float Damage { get { return _damage; } set { _damage = value; } }
     public Sprite Icon { get { return _icon; } }
     public Creature Owner { get { return _owner; } }
+    public Enums.ESkillSlot Slot { get { return _slot; } }
 
     // 고정된 데이터가 아닌 실제 진행중인 쿨타임
     protected float _currentCoolTime;
@@ -48,6 +50,7 @@ public class SkillBase : MonoBehaviour
         _baseDamage = data.Damage;
         _damage = _baseDamage;
         _icon = data.Icon;
+        _slot = data.Slot;
 
         _owner = owner;
     }
