@@ -21,12 +21,16 @@ public class UI_Preparation : MonoBehaviour
         HideUpgradePanel();
 
 #if UNITY_EDITOR    
-        HideCheatPanel();
-        cheatButton.SetActive(true);
+        //HideCheatPanel();
+        //cheatButton.SetActive(true);
 #else
         HideCheatPanel();
         cheatButton.SetActive(false);
 #endif
+
+        // 테스트용
+        HideCheatPanel();
+        cheatButton.SetActive(true);
 
         // Upgrade Group의 버튼을 누르는 경우 Upgrade 함수가 호출된다.
         attackUpgradeGroup.OnClickUpgrade += Upgrade;
