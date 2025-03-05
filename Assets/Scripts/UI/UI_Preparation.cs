@@ -107,8 +107,7 @@ public class UI_Preparation : MonoBehaviour
 
     public void Upgrade(Enums.EUpgradeType type)
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player?.UpgradeStat(type);
+        GameManager.Instance.Player.UpgradeStat(type);
     }
 
     public void StartGame()
